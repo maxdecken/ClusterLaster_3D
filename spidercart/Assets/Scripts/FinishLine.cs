@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     [SerializeField] private PlayerController player = null;
+    [SerializeField] private GameStateController gameStateController = null;
 
     void Start(){
         if(player == null){
@@ -16,6 +17,7 @@ public class FinishLine : MonoBehaviour
         //Debug.Log(collider.gameObject.name);
         if(collider.gameObject.name == player.gameObject.name){
             Debug.Log("Race Finished!!!");
+            gameStateController.RaceFinished();
         }
     }
 }

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
-    public bool controllsAllowed = true;
+    public bool controllsAllowed = false;
     public bool raceFinished = false;
 
     private bool startRaceStateSet = false;
