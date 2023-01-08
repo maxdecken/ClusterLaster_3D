@@ -10,4 +10,13 @@ public class SelectionController : MonoBehaviour
     {
         playerDataContainer = (PlayerDataContainer) GameObject.FindObjectOfType(typeof(PlayerDataContainer));
     }
+
+    public void SetCharacter(string characterTypeName){
+        Debug.Log("Selected: " + characterTypeName);
+        if(characterTypeName == "SpiderPiggyEvil"){
+            playerDataContainer.playerCharacterType = PlayerDataContainer.CharacterType.SpiderPiggyEvil;
+        }else{
+            playerDataContainer.playerCharacterType = PlayerDataContainer.CharacterType.SpiderPiggyDefault;
+        }
+    }
 }

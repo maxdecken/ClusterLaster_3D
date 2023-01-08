@@ -8,7 +8,7 @@ public class PlayerDataContainer : MonoBehaviour
     public enum CharacterType {SpiderPiggyDefault, SpiderPiggyEvil};
 
     //Selcted Character Type
-    [SerializeField] public CharacterType playerCharacterType { get; set; } = CharacterType.SpiderPiggyDefault;
+    public CharacterType playerCharacterType { get; set; } = CharacterType.SpiderPiggyDefault;
 
     //Place to Store and Pass on the time of the player after the race
     public double PlayerTime { get; set; } = 0;

@@ -11,6 +11,11 @@ public class GameStateController : MonoBehaviour
     [SerializeField] private TMP_Text timeText = null;
     [SerializeField] private SceneLoader gameOverLoader = null;
     [SerializeField] private double startPlayerTime = 0f;
+    //SpiderPiggy Object to Change material on
+    [SerializeField] private GameObject spiderPiggyCharacter = null;
+    //Materials for differnt Piggys
+    [SerializeField] private Material m_defaultPiggyMaterial = null;
+    [SerializeField] private Material m_evilPiggyMaterial = null;
     private bool raceOver = false;
 
     // Start is called before the first frame update
@@ -25,6 +30,13 @@ public class GameStateController : MonoBehaviour
             playerDataContainerGameObject.AddComponent<DontDestroy>();
 
             playerDataContainer = playerDataContainerGameObject.GetComponent<PlayerDataContainer>();
+        }
+
+        //Set right Material for selected piggy
+        if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyDefault){
+            spiderPiggyCharacter.GetComponent<Renderer>().material = m_defaultPiggyMaterial;
+        }else if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
+            spiderPiggyCharacter.GetComponent<Renderer>().material = m_evilPiggyMaterial;
         }
 
         StartCoroutine(StartRace());

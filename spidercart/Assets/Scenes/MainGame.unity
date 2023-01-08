@@ -374,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 331, y: 216}
+  m_AnchoredPosition: {x: 274, y: 181}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &86117692
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1002,6 +1002,10 @@ MonoBehaviour:
   timeText: {fileID: 86117692}
   gameOverLoader: {fileID: 470700324}
   startPlayerTime: 0
+  spiderPiggyCharacter: {fileID: 2125650445}
+  m_defaultPiggyMaterial: {fileID: 2100000, guid: c022ac5fc0d103d49846c011d2062d90,
+    type: 2}
+  m_evilPiggyMaterial: {fileID: 2100000, guid: 6769e4018e922874295f7f7e9948de19, type: 2}
 --- !u!114 &470700326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2259,7 +2263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 58}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847291910
@@ -2291,14 +2295,14 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278215076
-  m_fontColor: {r: 0.6415094, g: 0.38169408, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 0.11792451, b: 0.11792451, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
@@ -2345,7 +2349,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -74.92525}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5410,6 +5414,12 @@ Animator:
 --- !u!4 &2125650444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4013411118020149466, guid: 5fa99f9a6d84ab444bc4063998451dcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2125650442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2125650445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7245144775419261047, guid: 5fa99f9a6d84ab444bc4063998451dcc,
     type: 3}
   m_PrefabInstance: {fileID: 2125650442}
   m_PrefabAsset: {fileID: 0}
