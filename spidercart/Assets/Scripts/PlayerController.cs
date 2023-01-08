@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
     public bool controllsAllowed = false;
     public bool raceFinished = false;
-
     private bool startRaceStateSet = false;
+
+    //Binding if using On-Screencontrolls (Main Method)
+    public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
     
 
     private Vector3 Movement;
@@ -25,7 +27,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Binding if using Keyboard/ Editor
+        joystick.AddCompositeBinding("Dpad")
+            .With("Up", "<Keyboard>/w")
+            .With("Down", "<Keyboard>/s")
+            .With("Left", "<Keyboard>/a")
+            .With("Right", "<Keyboard>/d");
+
+        joystick.Enable();
+        //gamepad = Gamepad.current;
     }
 
     // Update is called once per frame
@@ -36,11 +46,11 @@ public class PlayerController : MonoBehaviour
                 playerAnimations.SetBool("startRace", true);
             }
             // Movement
-            Movement +=  transform.forward * velocity * Input.GetAxis("Vertical") * Time.deltaTime;
+            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y * Time.deltaTime;
             transform.position += Movement * Time.deltaTime;
             
             // Steering
-            float steerInput = Input.GetAxis("Horizontal");
+            float steerInput = joystick.ReadValue<Vector2>().x;
             transform.Rotate(Vector3.up * steerInput * Movement.magnitude * steeringStrength * Time.deltaTime);
             
             // Drag
