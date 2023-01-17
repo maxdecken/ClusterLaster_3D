@@ -7,6 +7,8 @@ public class GameStateController : MonoBehaviour
 {
     [SerializeField] private PlayerController player = null;
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
+    [SerializeField] private GameObject kart_default = null;
+    [SerializeField] private GameObject kart_evil = null;
     [SerializeField] private TMP_Text countdownText = null;
     [SerializeField] private TMP_Text timeText = null;
     [SerializeField] private SceneLoader gameOverLoader = null;
@@ -35,8 +37,12 @@ public class GameStateController : MonoBehaviour
         //Set right Material for selected piggy
         if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyDefault){
             spiderPiggyCharacter.GetComponent<Renderer>().material = m_defaultPiggyMaterial;
+            kart_default.SetActive(true);
+            kart_evil.SetActive(false);
         }else if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
             spiderPiggyCharacter.GetComponent<Renderer>().material = m_evilPiggyMaterial;
+            kart_default.SetActive(false);
+            kart_evil.SetActive(true);
         }
 
         StartCoroutine(StartRace());
