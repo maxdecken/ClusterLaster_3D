@@ -10,12 +10,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dragStrength = 0.99f;
     [SerializeField] private float steeringStrength = 20;
     [SerializeField] private Animator playerAnimations = null;
+    [SerializeField] CheckpointChecker checkpointChecker;
+    [SerializeField] GameObject StartingPosition;
+    private Rigidbody rigidbody;
 
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
     public bool controllsAllowed = false;
     public bool raceFinished = false;
     private bool startRaceStateSet = false;
+    private bool isSlipping = false;
+    private float saveSteeringStrength;
+    private float currentRotation;
 
     //Binding if using On-Screencontrolls (Main Method)
     public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
@@ -27,6 +33,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         //Binding if using Keyboard/ Editor
         joystick.AddCompositeBinding("Dpad")
             .With("Up", "<Keyboard>/w")
@@ -36,6 +43,17 @@ public class PlayerController : MonoBehaviour
 
         joystick.Enable();
         //gamepad = Gamepad.current;
+    }
+    
+    private void FixedUpdate()
+    {
+        currentRotation = transform.rotation.y;
+        currentRotation += (Mathf.Sin(Time.deltaTime/ 1));
+        if (isSlipping)
+        {
+            transform.Rotate(transform.rotation.x, 440f * Time.deltaTime, transform.rotation.z);
+            
+        }
     }
 
     // Update is called once per frame
@@ -62,11 +80,59 @@ public class PlayerController : MonoBehaviour
             if(randomHonkingHorn == 10000){
                 playerAnimations.SetTrigger("honkingHorn");
             }
+            Debug.Log("Velocity: " + rigidbody.velocity);
         }
 
         if(raceFinished){
             playerAnimations.SetBool("raceWon", true);
             //for now, later check for position of player and else set "raceLost"
         }
+    }
+    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("SeagullDropping"))
+        {
+            SlipUp();
+
+        }
+        
+        if (other.gameObject.CompareTag("FallBound"))
+        {
+            rigidbody.velocity = new Vector3(0,0,0);
+            rigidbody.angularVelocity = new Vector3(0,0,0);
+            if (checkpointChecker.getLastCheckPoint() != null)
+            {
+                
+                //transform.rotation = new Quaternion(0, 228, 0, 0);
+                transform.rotation = checkpointChecker.getLastCheckPoint().transform.rotation;
+                transform.position = checkpointChecker.getLastCheckPoint().transform.position;
+                rigidbody.velocity = new Vector3(0,0,0);
+                rigidbody.angularVelocity = new Vector3(0,0,0);
+            }
+            else
+            {
+                Debug.Log("No checkpoint!");
+                transform.rotation = StartingPosition.transform.rotation;
+                transform.position = StartingPosition.transform.position;
+                rigidbody.velocity = new Vector3(0,0,0);
+                rigidbody.angularVelocity = new Vector3(0,0,0);
+            }
+        }
+    }
+    public void SlipUp()
+    {
+        StartCoroutine(SlipUpCoroutine());
+    }
+    
+    public IEnumerator SlipUpCoroutine()
+    {
+        Debug.Log("Hit");
+        saveSteeringStrength = steeringStrength;
+        isSlipping = true;
+        steeringStrength = 0;
+        yield return new WaitForSeconds(1.3f);
+        isSlipping = false;
+        steeringStrength = saveSteeringStrength;
     }
 }
