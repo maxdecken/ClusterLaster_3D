@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameStateController : MonoBehaviour
 {
+    [SerializeField] private GameObject play_canvas = null;
+    [SerializeField] private GameObject pause_canvas = null;
     [SerializeField] private PlayerController player = null;
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
     [SerializeField] private GameObject kart_default = null;
@@ -45,6 +47,9 @@ public class GameStateController : MonoBehaviour
             kart_evil.SetActive(true);
         }
 
+        play_canvas.SetActive(true);
+        pause_canvas.SetActive(false);
+
         StartCoroutine(StartRace());
     }
 
@@ -60,6 +65,25 @@ public class GameStateController : MonoBehaviour
             string timeTextContent = string.Format("{0:0}:{1:00}", minutes, seconds);
             timeText.text = timeTextContent;
         }
+    }
+
+    // Help for Pause from here: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
+    public void PauseGame ()
+    {
+        Time.timeScale = 0;
+        play_canvas.SetActive(false);
+        pause_canvas.SetActive(true);
+    }
+
+    public void ResumeGame ()
+    {
+        Time.timeScale = 1;
+        play_canvas.SetActive(true);
+        pause_canvas.SetActive(false);
+    }
+
+    public void OnExitInPause(){
+        Time.timeScale = 1;  
     }
 
     IEnumerator StartRace(){
