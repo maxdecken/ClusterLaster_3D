@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (checkpointChecker == null) {
             Debug.Log("ATTENTION CHECKER NOT SET");
+            return;
         }
 
         rigidbody.velocity = new Vector3(0,0,0);
