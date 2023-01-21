@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+using Cinemachine;
+
+public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] private float velocity = 50;
     [SerializeField] private float maxVelocity = 15;
@@ -12,7 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] CheckpointChecker checkpointChecker;
     [SerializeField] GameObject StartingPosition;
+    [SerializeField] GameObject cameraLookAt;
     private Rigidbody rigidbody;
+
 
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
@@ -28,6 +34,10 @@ public class PlayerController : MonoBehaviour
     
 
     private Vector3 Movement;
+
+    // Multiplayer
+    [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+    public static GameObject LocalPlayerInstance;
     
     
     // Start is called before the first frame update
@@ -43,6 +53,16 @@ public class PlayerController : MonoBehaviour
 
         joystick.Enable();
         //gamepad = Gamepad.current;
+
+        if (photonView.IsMine) {
+            PlayerController.LocalPlayerInstance = this.gameObject;
+            controllsAllowed = true;
+
+            // Attach Cinematic Camera
+            GameObject cm = GameObject.Find("CMFreeLook1");
+            cm.GetComponent<CinemachineFreeLook>().Follow = this.transform;
+            cm.GetComponent<CinemachineFreeLook>().LookAt = cameraLookAt.transform;
+        }
     }
     
     private void FixedUpdate()
@@ -59,6 +79,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (photonView.IsMine) { // Photon View is self lazy initiated by pun
+        //    Debug.Log("itsm ee");
+        //}
+
         if(controllsAllowed){
             if(!startRaceStateSet){
                 playerAnimations.SetBool("startRace", true);
@@ -80,7 +104,6 @@ public class PlayerController : MonoBehaviour
             if(randomHonkingHorn == 10000){
                 playerAnimations.SetTrigger("honkingHorn");
             }
-            Debug.Log("Velocity: " + rigidbody.velocity);
         }
 
         if(raceFinished){
@@ -134,5 +157,21 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         isSlipping = false;
         steeringStrength = saveSteeringStrength;
+    }
+
+    /****
+    ************* MULTIPLAYER STUFF ***************
+    **/
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.IsWriting) {
+            // We own this player: send the others our data
+            Debug.Log("Sending: Some Data");
+            stream.SendNext(transform.position);
+        }
+        else {
+            // Network player, receive data
+            Debug.Log("Received Data: " + stream.ReceiveNext());
+        }
     }
 }

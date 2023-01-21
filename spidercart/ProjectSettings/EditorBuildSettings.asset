@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartScene.unity
     guid: e03abe51ed31b1749aa02ebceb688f0f
   - enabled: 1
@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: e6f1f46b46cf4de42a23e7bfc5534e4e
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 9a2b18a97de091d449f563ca6cdf8feb
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b74f2e4f32c134d439e4edc4522b4e83,
       type: 2}

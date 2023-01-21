@@ -50,6 +50,10 @@ public class GameStateController : MonoBehaviour
         play_canvas.SetActive(true);
         pause_canvas.SetActive(false);
 
+        // MULTIPLAYER
+        // START WORK OF MULTIPLAYER GAME MANAGER
+        PunGameManager.Instance.initiatePlayers();
+
         StartCoroutine(StartRace());
     }
 
