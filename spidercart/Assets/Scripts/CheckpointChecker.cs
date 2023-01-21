@@ -24,7 +24,7 @@ public class CheckpointChecker : MonoBehaviour
             checkpointTrigger.SetCheckpoints(this);
             checkPointTriggerList.Add(checkpointTrigger);
         }
-        nextCheckPointTriggerIndex = 0;
+        
     }
     
     
@@ -47,7 +47,7 @@ public class CheckpointChecker : MonoBehaviour
 
     public void setRespawnPosition()
     {
-        //lastCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
+        lastCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
         
     }
 
