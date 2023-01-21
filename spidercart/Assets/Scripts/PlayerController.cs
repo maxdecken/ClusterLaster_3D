@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             PlayerController.LocalPlayerInstance = this.gameObject;
             controllsAllowed = true;
 
+            checkpointChecker = GameObject.Find("CheckpointContainer").GetComponent<CheckpointChecker>();
+            StartingPosition =  GameObject.Find("StartingPosition");
+
             // Attach Cinematic Camera
             GameObject cm = GameObject.Find("CMFreeLook1");
             cm.GetComponent<CinemachineFreeLook>().Follow = this.transform;
