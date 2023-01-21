@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] CheckpointChecker checkpointChecker;
     [SerializeField] GameObject StartingPosition;
+    [SerializeField] float RayDistance;
     private Rigidbody rigidbody;
+    private bool isOnTop;
+    private LayerMask groundLayer;
+    private float timer;
 
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
@@ -59,6 +65,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // is on top check
+        isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
+        Debug.Log("Treffer: " + isOnTop);
+        
+        if (isOnTop)
+        {
+            timer = 0.0f;
+            //return;
+        }
+
+        timer += Time.deltaTime;
+        if (timer > 3.0f)
+        {
+            Debug.Log("RESPAWN!");
+            respawn();
+
+            timer = timer - 3.0f; // reset timer
+        }
+        
         if(controllsAllowed){
             if(!startRaceStateSet){
                 playerAnimations.SetBool("startRace", true);
@@ -80,7 +105,7 @@ public class PlayerController : MonoBehaviour
             if(randomHonkingHorn == 10000){
                 playerAnimations.SetTrigger("honkingHorn");
             }
-            Debug.Log("Velocity: " + rigidbody.velocity);
+            //Debug.Log("Velocity: " + rigidbody.velocity);
         }
 
         if(raceFinished){
@@ -99,25 +124,29 @@ public class PlayerController : MonoBehaviour
         
         if (other.gameObject.CompareTag("FallBound"))
         {
+            respawn();
+        }
+    }
+
+    public void respawn()
+    {
+        rigidbody.velocity = new Vector3(0,0,0);
+        rigidbody.angularVelocity = new Vector3(0,0,0);
+        if (checkpointChecker.getLastCheckPoint() != null)
+        {
+            //transform.rotation = new Quaternion(0, 228, 0, 0);
+            transform.rotation = checkpointChecker.getLastCheckPoint().transform.rotation;
+            transform.position = checkpointChecker.getLastCheckPoint().transform.position;
             rigidbody.velocity = new Vector3(0,0,0);
             rigidbody.angularVelocity = new Vector3(0,0,0);
-            if (checkpointChecker.getLastCheckPoint() != null)
-            {
-                
-                //transform.rotation = new Quaternion(0, 228, 0, 0);
-                transform.rotation = checkpointChecker.getLastCheckPoint().transform.rotation;
-                transform.position = checkpointChecker.getLastCheckPoint().transform.position;
-                rigidbody.velocity = new Vector3(0,0,0);
-                rigidbody.angularVelocity = new Vector3(0,0,0);
-            }
-            else
-            {
-                Debug.Log("No checkpoint!");
-                transform.rotation = StartingPosition.transform.rotation;
-                transform.position = StartingPosition.transform.position;
-                rigidbody.velocity = new Vector3(0,0,0);
-                rigidbody.angularVelocity = new Vector3(0,0,0);
-            }
+        }
+        else
+        {
+            Debug.Log("No checkpoint!");
+            transform.rotation = StartingPosition.transform.rotation;
+            transform.position = StartingPosition.transform.position;
+            rigidbody.velocity = new Vector3(0,0,0);
+            rigidbody.angularVelocity = new Vector3(0,0,0);
         }
     }
     public void SlipUp()

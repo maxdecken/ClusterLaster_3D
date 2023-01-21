@@ -9206,6 +9206,7 @@ MonoBehaviour:
   playerAnimations: {fileID: 2125650443}
   checkpointChecker: {fileID: 1582405818}
   StartingPosition: {fileID: 123592973}
+  RayDistance: 3
   controllsAllowed: 0
   raceFinished: 0
   joystick:
