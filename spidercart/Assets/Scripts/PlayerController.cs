@@ -152,6 +152,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
     public void respawn()
     {
+        if (checkpointChecker == null) {
+            Debug.Log("ATTENTION CHECKER NOT SET");
+        }
+
         rigidbody.velocity = new Vector3(0,0,0);
         rigidbody.angularVelocity = new Vector3(0,0,0);
         if (checkpointChecker.getLastCheckPoint() != null)
