@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         // is on top check
-        isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
+        isOnTop = true; //Physics.Raycast(transform.position, Vector3.up, RayDistance);
         Debug.Log("Treffer: " + isOnTop);
         
         if (isOnTop)

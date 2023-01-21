@@ -80,7 +80,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     new Vector3(
                         -151.81f,
                         64.14f,
-                        4 + PhotonNetwork.LocalPlayer.ActorNumber
+                        4 + PhotonNetwork.LocalPlayer.ActorNumber + 1
                     ),
                     new Quaternion(
                         0,
