@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FallBound
   - SeagullDropping
+  - Container
   layers:
   - Default
   - TransparentFX

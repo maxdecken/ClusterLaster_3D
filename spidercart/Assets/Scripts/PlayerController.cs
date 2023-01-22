@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             PlayerController.LocalPlayerInstance = this.gameObject;
             controllsAllowed = true;
 
-            checkpointChecker = GameObject.Find("CheckpointContainer").GetComponent<CheckpointChecker>();
+            checkpointChecker = this.transform.GetComponent<CheckpointChecker>();
             StartingPosition =  GameObject.Find("StartingPosition");
 
             // Attach Cinematic Camera
@@ -184,12 +184,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     public IEnumerator SlipUpCoroutine()
     {
         Debug.Log("Hit");
-        saveSteeringStrength = steeringStrength;
+        //saveSteeringStrength = steeringStrength;
         isSlipping = true;
-        steeringStrength = 0;
+        //steeringStrength = 0;
         yield return new WaitForSeconds(1.3f);
         isSlipping = false;
-        steeringStrength = saveSteeringStrength;
+        //steeringStrength = saveSteeringStrength;
     }
 
     /****

@@ -2130,6 +2130,7 @@ GameObject:
   - component: {fileID: 7137323518411047695}
   - component: {fileID: 4001544613400350960}
   - component: {fileID: 4001544613400350959}
+  - component: {fileID: -1053700307725660032}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -2237,7 +2238,7 @@ MonoBehaviour:
   dragStrength: 0.99
   steeringStrength: 20
   playerAnimations: {fileID: 7155442205200244736}
-  checkpointChecker: {fileID: 0}
+  checkpointChecker: {fileID: -1053700307725660032}
   StartingPosition: {fileID: 0}
   cameraLookAt: {fileID: 4312069091513110896}
   RayDistance: 0
@@ -2316,6 +2317,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-1053700307725660032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001544613400350967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37aebe0106ac29d49a6af1b108254b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4167401872305677821
 GameObject:
   m_ObjectHideFlags: 0

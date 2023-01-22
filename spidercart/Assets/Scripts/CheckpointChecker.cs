@@ -6,20 +6,22 @@ using Debug = UnityEngine.Debug;
 
 public class CheckpointChecker : MonoBehaviour
 {
+    private GameObject checkpointContainer;
     private List<CheckpointTrigger> checkPointTriggerList;
     private int nextCheckPointTriggerIndex;
     private CheckpointTrigger lastCheckPoint;
     
     private void Awake()
     {
-        Transform checkpoints = transform.Find("Checkpoints");
-        Debug.Log("Wie viele Kinder? " + transform.childCount);
+        checkpointContainer = GameObject.FindGameObjectWithTag("Container");
+        Transform checkpoints = checkpointContainer.transform.Find("Checkpoints");
+        Debug.Log("Wie viele Kinder? " + checkpointContainer.transform.childCount);
 
         checkPointTriggerList = new List<CheckpointTrigger>();
         
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < checkpointContainer.transform.childCount; i++)
         {
-            CheckpointTrigger checkpointTrigger = transform.GetChild(i).GetComponent<CheckpointTrigger>();
+            CheckpointTrigger checkpointTrigger = checkpointContainer.transform.GetChild(i).GetComponent<CheckpointTrigger>();
 
             checkpointTrigger.SetCheckpoints(this);
             checkPointTriggerList.Add(checkpointTrigger);
@@ -48,6 +50,7 @@ public class CheckpointChecker : MonoBehaviour
     public void setRespawnPosition()
     {
         lastCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
+        Debug.Log("Last Ceckpoint: " + lastCheckPoint);
         
     }
 
