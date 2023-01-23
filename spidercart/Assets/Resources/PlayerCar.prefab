@@ -2238,7 +2238,7 @@ MonoBehaviour:
   dragStrength: 0.99
   steeringStrength: 20
   playerAnimations: {fileID: 7155442205200244736}
-  checkpointChecker: {fileID: -1053700307725660032}
+  checkpointChecker: {fileID: 0}
   StartingPosition: {fileID: 0}
   cameraLookAt: {fileID: 4312069091513110896}
   RayDistance: 0

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float dragStrength = 0.99f;
     [SerializeField] private float steeringStrength = 20;
     [SerializeField] private Animator playerAnimations = null;
-    [SerializeField] CheckpointChecker checkpointChecker;
+    [SerializeField] PlayerController checkpointChecker;
     [SerializeField] GameObject StartingPosition;
     [SerializeField] GameObject cameraLookAt;
     [SerializeField] float RayDistance;
@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private LayerMask groundLayer;
     private float timer;
 
-
+    private GameObject checkpointContainer;
+    private List<GameObject> checkPointTriggerList;
+    private int nextCheckPointTriggerIndex;
+    private GameObject lastCheckPoint;
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
     public bool controllsAllowed = false;
@@ -46,6 +49,24 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     public static GameObject LocalPlayerInstance;
     
     
+    private void Awake()
+    {
+        checkpointContainer = GameObject.FindGameObjectWithTag("Container");
+        Transform checkpoints = checkpointContainer.transform.Find("Checkpoints");
+        Debug.Log("Wie viele Kinder? " + checkpointContainer.transform.childCount);
+
+        checkPointTriggerList = new List<GameObject>();
+        
+        for (int i = 0; i < checkpointContainer.transform.childCount; i++)
+        {
+            GameObject checkpointTrigger = checkpointContainer.transform.GetChild(i).gameObject;
+            
+            checkPointTriggerList.Add(checkpointTrigger);
+        }
+        
+    }
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,12 +80,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
         joystick.Enable();
         //gamepad = Gamepad.current;
-
+        checkpointChecker = this.transform.GetComponent<PlayerController>();
         if (photonView.IsMine) {
             PlayerController.LocalPlayerInstance = this.gameObject;
             controllsAllowed = true;
 
-            checkpointChecker = this.transform.GetComponent<CheckpointChecker>();
+            
             StartingPosition =  GameObject.Find("StartingPosition");
 
             // Attach Cinematic Camera
@@ -148,6 +169,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         {
             respawn();
         }
+        if (other.gameObject.CompareTag("CheckpointTrigger"))
+        {
+            checkpointChecker.AlertCheckpointTrigger(other.gameObject);
+
+        }
     }
 
     public void respawn()
@@ -206,5 +232,32 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             // Network player, receive data
             Debug.Log("Received Data: " + stream.ReceiveNext());
         }
+    }
+    
+    public void AlertCheckpointTrigger(GameObject checkpointTrigger)
+    {
+        if (checkPointTriggerList.IndexOf(checkpointTrigger) == nextCheckPointTriggerIndex)
+        {
+            Debug.Log("correct");
+            setRespawnPosition();
+            nextCheckPointTriggerIndex++;
+        }
+        else
+        {
+            Debug.Log("wrong");
+        }
+    }
+
+    public void setRespawnPosition()
+    {
+        lastCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
+        Debug.Log("Last Ceckpoint: " + lastCheckPoint);
+        
+    }
+
+    public GameObject getLastCheckPoint()
+    {
+        Debug.Log(lastCheckPoint);
+        return lastCheckPoint;
     }
 }
