@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] PlayerController checkpointChecker;
     [SerializeField] GameObject StartingPosition;
     [SerializeField] GameObject cameraLookAt;
-    [SerializeField] float RayDistance;
+    private float RayDistance = 3;
     private Rigidbody rigidbody;
     private bool isOnTop;
     private LayerMask groundLayer;
@@ -110,8 +110,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         // is on top check
-        isOnTop = true; //Physics.Raycast(transform.position, Vector3.up, RayDistance);
-        //Debug.Log("Treffer: " + isOnTop);
+        isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
+        Debug.Log("Treffer: " + isOnTop);
         
         if (isOnTop)
         {
@@ -120,12 +120,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         timer += Time.deltaTime;
-        if (timer > 3.0f)
+        if (timer > 4.0f)
         {
             Debug.Log("RESPAWN!");
             respawn();
 
-            timer = timer - 3.0f; // reset timer
+            timer = timer - 4.0f; // reset timer
         }
         
         if(controllsAllowed){
