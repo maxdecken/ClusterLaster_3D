@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1208,6 +1208,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressLabel: {fileID: 1557496755}
   playerPrefab: {fileID: 4001544613400350967, guid: 8023868ae4020004ca1069e572f0673a,
+    type: 3}
+  playerPrefab_default: {fileID: 4001544613400350967, guid: b2224efeb71046e49ab37ce9046568b5,
+    type: 3}
+  playerPrefab_evil: {fileID: 4001544613400350967, guid: 53e008896d05b0245835ccdee0d504da,
     type: 3}
 --- !u!1 &1481512048
 GameObject:

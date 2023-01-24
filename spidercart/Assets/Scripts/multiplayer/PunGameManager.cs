@@ -17,7 +17,8 @@ public class PunGameManager : MonoBehaviourPunCallbacks
     private GameObject progressLabel;
 
     [Tooltip("The prefab to use for representing the player")]
-    public GameObject playerPrefab;
+    public GameObject playerPrefab_default;
+    public GameObject playerPrefab_evil;
 
     public static PunGameManager Instance;
 
@@ -69,7 +70,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
     *** ACTUAL GAMEPLAY ETC
     **********/
     public void initiatePlayers () {
-        if (playerPrefab == null) {
+        if (playerPrefab_default == null || playerPrefab_evil == null) {
             Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Pun Game Manager'",this);
         }
         else {
@@ -88,9 +89,14 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     playerDataContainer = playerDataContainerGameObject.GetComponent<PlayerDataContainer>();
                 }
 
+                GameObject selectedPlayerPrefab = playerPrefab_default;
+                if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
+                    selectedPlayerPrefab = playerPrefab_evil;
+                }
+
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                GameObject myPlayerPRefabInstance = PhotonNetwork.Instantiate(
-                    this.playerPrefab.name,
+                GameObject myPlayerPrefabInstance = PhotonNetwork.Instantiate(
+                    selectedPlayerPrefab.name,
                     new Vector3(
                         -151.81f,
                         64.14f,
@@ -104,7 +110,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     ),
                     0
                 );
-                gameStateController.SetKartAndCharacter(playerDataContainer, myPlayerPRefabInstance);
+                //myPlayerPrefabInstance.GetComponent<PlayerController>().SetKartAndCharacter(playerDataContainer);
             }
         }
     }
