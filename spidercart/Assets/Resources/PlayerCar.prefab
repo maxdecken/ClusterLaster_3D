@@ -2241,7 +2241,6 @@ MonoBehaviour:
   checkpointChecker: {fileID: 0}
   StartingPosition: {fileID: 0}
   cameraLookAt: {fileID: 4312069091513110896}
-  RayDistance: 0
   controllsAllowed: 0
   raceFinished: 0
   joystick:
