@@ -2017,6 +2017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3274847981164315586}
   - component: {fileID: 6293276853341124753}
+  - component: {fileID: 3036888691725962668}
   m_Layer: 0
   m_Name: spiderpiggy_highpoly_v01
   m_TagString: Untagged
@@ -2114,6 +2115,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0004277369, y: 0.0077927364, z: -0.0019756956}
     m_Extent: {x: 0.013044584, y: 0.016113084, z: 0.009823774}
   m_DirtyAABB: 0
+--- !u!114 &3036888691725962668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001544613217319730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dbcc41201713341bca2de8167d821d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4001544613400350967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2251,7 @@ MonoBehaviour:
   dragStrength: 0.99
   steeringStrength: 20
   playerAnimations: {fileID: 7155442205200244736}
+  gameStateController: {fileID: 0}
   checkpointChecker: {fileID: 0}
   StartingPosition: {fileID: 0}
   cameraLookAt: {fileID: 4312069091513110896}
@@ -2567,6 +2581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2641118973465545686}
+  - component: {fileID: 4198751124943961304}
   m_Layer: 0
   m_Name: kart_default
   m_TagString: Untagged
@@ -2600,6 +2615,18 @@ Transform:
   m_Father: {fileID: 4001544613400350961}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180.295, z: 0}
+--- !u!114 &4198751124943961304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272014227166687882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1547888f429a74e8f020b0c79f77ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4312069091513110896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,13 +4692,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8751386904276081608}
+  - component: {fileID: 2326375864144250318}
   m_Layer: 0
   m_Name: kart_evil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8751386904276081608
 Transform:
   m_ObjectHideFlags: 0
@@ -4719,6 +4747,18 @@ Transform:
   m_Father: {fileID: 4001544613400350961}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 186.543, z: 0}
+--- !u!114 &2326375864144250318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494876064455832170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874c47c5ea85eab4d8390134f816deb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8744171162525515316
 GameObject:
   m_ObjectHideFlags: 0

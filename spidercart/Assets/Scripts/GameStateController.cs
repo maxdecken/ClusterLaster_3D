@@ -9,14 +9,10 @@ public class GameStateController : MonoBehaviour
     [SerializeField] private GameObject pause_canvas = null;
     [SerializeField] private PlayerController player = null;
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
-    [SerializeField] private GameObject kart_default = null;
-    [SerializeField] private GameObject kart_evil = null;
     [SerializeField] private TMP_Text countdownText = null;
     [SerializeField] private TMP_Text timeText = null;
     [SerializeField] private SceneLoader gameOverLoader = null;
     [SerializeField] private double startPlayerTime = 0f;
-    //SpiderPiggy Object to Change material on
-    [SerializeField] private GameObject spiderPiggyCharacter = null;
     //Materials for differnt Piggys
     [SerializeField] private Material m_defaultPiggyMaterial = null;
     [SerializeField] private Material m_evilPiggyMaterial = null;
@@ -35,17 +31,6 @@ public class GameStateController : MonoBehaviour
             playerDataContainerGameObject.AddComponent<DontDestroy>();
 
             playerDataContainer = playerDataContainerGameObject.GetComponent<PlayerDataContainer>();
-        }
-
-        //Set right Material for selected piggy
-        if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyDefault){
-            spiderPiggyCharacter.GetComponent<Renderer>().material = m_defaultPiggyMaterial;
-            kart_default.SetActive(true);
-            kart_evil.SetActive(false);
-        }else if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
-            spiderPiggyCharacter.GetComponent<Renderer>().material = m_evilPiggyMaterial;
-            kart_default.SetActive(false);
-            kart_evil.SetActive(true);
         }
 
         play_canvas.SetActive(true);
@@ -122,5 +107,21 @@ public class GameStateController : MonoBehaviour
         playerDataContainer.PlayerTime = timeDelta;
         yield return new WaitForSeconds(3f);
         gameOverLoader.LoadScene();
+    }
+
+    public void SetKartAndCharacter(PlayerDataContainer playerDataContainer, GameObject playerCarPrefab){
+        GameObject spiderPiggyCharacter = playerCarPrefab.GetComponentInChildren<SpiderPiggyCharacter>().gameObject;
+        GameObject kart_default = playerCarPrefab.GetComponentInChildren<DefaultKart>().gameObject;
+        GameObject kart_evil = playerCarPrefab.GetComponentInChildren<EvilKart>().gameObject;
+        //Set right Material for selected piggy
+        if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyDefault){
+            spiderPiggyCharacter.GetComponent<Renderer>().material = m_defaultPiggyMaterial;
+            kart_default.SetActive(true);
+            kart_evil.SetActive(false);
+        }else if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
+            spiderPiggyCharacter.GetComponent<Renderer>().material = m_evilPiggyMaterial;
+            kart_default.SetActive(false);
+            kart_evil.SetActive(true);
+        }
     }
 }

@@ -74,8 +74,22 @@ public class PunGameManager : MonoBehaviourPunCallbacks
         }
         else {
             if (PlayerController.LocalPlayerInstance == null) {
+
+                GameStateController gameStateController = GameObject.FindObjectOfType<GameStateController>();
+                PlayerDataContainer playerDataContainer = (PlayerDataContainer) GameObject.FindObjectOfType(typeof(PlayerDataContainer));
+
+                if(playerDataContainer == null){
+                    Debug.Log("No PlayerDataContainer found: Creating new one!");
+                    // New playerDataContainer with default settings
+                    GameObject playerDataContainerGameObject = new GameObject("PlayerDataContainer");
+                    playerDataContainerGameObject.gameObject.AddComponent<PlayerDataContainer>();
+                    playerDataContainerGameObject.AddComponent<DontDestroy>();
+
+                    playerDataContainer = playerDataContainerGameObject.GetComponent<PlayerDataContainer>();
+                }
+
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(
+                GameObject myPlayerPRefabInstance = PhotonNetwork.Instantiate(
                     this.playerPrefab.name,
                     new Vector3(
                         -151.81f,
@@ -90,6 +104,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     ),
                     0
                 );
+                gameStateController.SetKartAndCharacter(playerDataContainer, myPlayerPRefabInstance);
             }
         }
     }
