@@ -6,6 +6,7 @@ public class FinishLine : MonoBehaviour
 {
     [SerializeField] private PlayerController player = null;
     [SerializeField] private GameStateController gameStateController = null;
+    [SerializeField] private AudioSource FinishSound;
 
     void Start(){
         if(player == null){
@@ -18,6 +19,7 @@ public class FinishLine : MonoBehaviour
         if(collider.gameObject.name == player.gameObject.name){
             Debug.Log("Race Finished!!!");
             gameStateController.RaceFinished();
+            FinishSound.Play();
         }
     }
 }
