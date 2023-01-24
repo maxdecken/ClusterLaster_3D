@@ -20,6 +20,7 @@ public class GameStateController : MonoBehaviour
     //Materials for differnt Piggys
     [SerializeField] private Material m_defaultPiggyMaterial = null;
     [SerializeField] private Material m_evilPiggyMaterial = null;
+    private bool raceStarted = false;
     private bool raceOver = false;
 
     // Start is called before the first frame update
@@ -98,11 +99,16 @@ public class GameStateController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countdownText.text = "Start";
 
-        player.controllsAllowed = true;
+        //player.controllsAllowed = true;
+        raceStarted = true;
         startPlayerTime = Time.timeAsDouble;
 
         yield return new WaitForSeconds(3f);
         countdownText.text = "";
+    }
+
+    public bool IsRaceStarted(){
+        return raceStarted;
     }
     public void RaceFinished(){
         StartCoroutine(RaceOverSequence());

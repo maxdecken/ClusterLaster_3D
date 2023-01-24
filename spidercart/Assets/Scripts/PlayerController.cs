@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float dragStrength = 0.99f;
     [SerializeField] private float steeringStrength = 20;
     [SerializeField] private Animator playerAnimations = null;
+    [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
     [SerializeField] GameObject StartingPosition;
     [SerializeField] GameObject cameraLookAt;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     
     private void Awake()
     {
+        gameStateController = GameObject.FindObjectOfType<GameStateController>();
         checkpointContainer = GameObject.FindGameObjectWithTag("Container");
         Transform checkpoints = checkpointContainer.transform.Find("Checkpoints");
         Debug.Log("Wie viele Kinder? " + checkpointContainer.transform.childCount);
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         checkpointChecker = this.transform.GetComponent<PlayerController>();
         if (photonView.IsMine) {
             PlayerController.LocalPlayerInstance = this.gameObject;
-            controllsAllowed = true;
+            controllsAllowed = false;
 
             
             StartingPosition =  GameObject.Find("StartingPosition");
@@ -109,6 +111,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if(!controllsAllowed){
+            if(gameStateController.IsRaceStarted()){
+                controllsAllowed = true;
+            }
+        }
         // is on top check
         isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
         Debug.Log("Treffer: " + isOnTop);
