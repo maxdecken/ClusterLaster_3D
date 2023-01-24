@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
     //Use to disbale controlls before start and after race has finished, is used in GameStateController
     public bool controllsAllowed = false;
+    public bool respawnCooldown = false;
     public bool raceFinished = false;
     private bool startRaceStateSet = false;
     private bool isSlipping = false;
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             timer = timer - 4.0f; // reset timer
         }
         
-        if(controllsAllowed){
+        if(controllsAllowed && !(respawnCooldown)){
             if(!startRaceStateSet){
                 playerAnimations.SetBool("startRace", true);
             }
@@ -185,6 +186,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
     public void respawn()
     {
+        StartCoroutine(allowControlsAfterSeconds());
         if (checkpointChecker == null) {
             Debug.Log("ATTENTION CHECKER NOT SET");
             return;
@@ -224,6 +226,14 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         isSlipping = false;
         //steeringStrength = saveSteeringStrength;
     }
+
+    public IEnumerator allowControlsAfterSeconds()
+        {
+            respawnCooldown = true;
+            yield return new WaitForSeconds(0.8f);
+            respawnCooldown = false;
+            //steeringStrength = saveSteeringStrength;
+        }
 
     /****
     ************* MULTIPLAYER STUFF ***************
