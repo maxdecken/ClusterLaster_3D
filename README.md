@@ -15,7 +15,7 @@ Viel Spaß beim spielen!
 Bei unserem Cart Racing Game geht es darum...
 
 ### Genre & Art Style
-2D Sidescroller, Platformer, Endlessrunner
+3D Racing Game, Fun-Racer
 
 ## Features
 
@@ -26,6 +26,10 @@ Das Seil wir mit der linken Maustaste bedient.
 Der Player kann auch Items wie Äpfel, Bananen, etc. einsammeln, welche jeweils unterschiedliche Vorteile bringen.
 
 ### Obstacles
+
+Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte ein Spieler über diese fahren, rutscht er für einen Augenblick aus und mus sich wieder neu orientieren. Da dies Zeit kostet, sollten Kollisionen vermieden werden. Die Möwen-Hinterlassenschaften sind überwiegend in der zweiten Hälfte der Strecke verteilt, damit die erste Hälfte einen leichteren Einstieg ermöglicht.
+
+### Multiplayer
 
 ## Das Spiel
 
@@ -95,4 +99,4 @@ Software
 
 
 #### Code
-* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2022, 19:55 Uhr
+* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überwarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2022, 19:55 Uhr
