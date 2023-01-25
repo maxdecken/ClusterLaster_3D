@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185398815181439326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4064751, z: -0.17887278}
+  m_LocalPosition: {x: 0.052, y: 0.4064751, z: -0.179}
   m_LocalScale: {x: 20, y: 32.77614, z: 11.753644}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1739,7 +1739,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4001544613400350967}
-  m_LocalRotation: {x: -0, y: 0.6647781, z: -0, w: 0.74704087}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -151.81, y: 64.14, z: 5.82}
   m_LocalScale: {x: 1, y: 0.6102, z: 1.7016}
   m_ConstrainProportionsScale: 0
@@ -1750,7 +1750,7 @@ Transform:
   - {fileID: 3254721981870877242}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 83.331, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &5987203321101601023
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1830,12 +1830,15 @@ MonoBehaviour:
   maxVelocity: 15
   dragStrength: 0.99
   steeringStrength: 20
+  controllerSensitiyityX: 8000
+  controllerSensitiyityY: 10000
   playerAnimations: {fileID: 7155442205200244736}
   gameStateController: {fileID: 0}
   checkpointChecker: {fileID: 0}
   StartingPosition: {fileID: 0}
   cameraLookAt: {fileID: 4312069091513110896}
   controllsAllowed: 0
+  respawnCooldown: 0
   raceFinished: 0
   joystick:
     m_Name: look
@@ -3817,8 +3820,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8494876064455832170}
-  m_LocalRotation: {x: 0, y: 0.99837035, z: -0, w: -0.057067253}
-  m_LocalPosition: {x: -2.642, y: 0.4, z: 0.242}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -2.64, y: 0.4, z: 0.044}
   m_LocalScale: {x: 0.1468098, y: 0.3206653, z: 0.1429513}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3856,7 +3859,7 @@ Transform:
   - {fileID: 260106854741512073}
   m_Father: {fileID: 4001544613400350961}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 186.543, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2326375864144250318
 MonoBehaviour:
   m_ObjectHideFlags: 0

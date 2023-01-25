@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float maxVelocity = 15;
     [SerializeField] private float dragStrength = 0.99f;
     [SerializeField] private float steeringStrength = 20;
+    [SerializeField] private int controllerSensitiyityX = 8000;
+    [SerializeField] private int controllerSensitiyityY = 10000;
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
@@ -141,12 +143,17 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 playerAnimations.SetBool("startRace", true);
             }
             // Movement
-            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y * Time.deltaTime;
-            transform.position += Movement * Time.deltaTime;
+            //Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y * Time.deltaTime;
+            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y * controllerSensitiyityY;
+            //transform.position += Movement * Time.deltaTime;
+            rigidbody.AddForce(Movement);
             
             // Steering
-            float steerInput = joystick.ReadValue<Vector2>().x;
-            transform.Rotate(Vector3.up * steerInput * Movement.magnitude * steeringStrength * Time.deltaTime);
+            //float steerInput = joystick.ReadValue<Vector2>().x;
+            //transform.Rotate(Vector3.up * steerInput * Movement.magnitude * steeringStrength * Time.deltaTime);
+
+            float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityY;
+            rigidbody.AddTorque(transform.up * turnAmmount * velocity);
             
             // Drag
             Movement *= dragStrength;
