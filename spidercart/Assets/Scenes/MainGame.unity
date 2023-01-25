@@ -3732,16 +3732,11 @@ MonoBehaviour:
   pause_canvas: {fileID: 251636641}
   player: {fileID: 1805382090}
   playerDataContainer: {fileID: 0}
-  kart_default: {fileID: 919132148226560949}
-  kart_evil: {fileID: 4786072248779494229}
   countdownText: {fileID: 847291910}
   timeText: {fileID: 86117692}
+  positionText: {fileID: 1003390622}
   gameOverLoader: {fileID: 470700324}
   startPlayerTime: 0
-  spiderPiggyCharacter: {fileID: 2125650445}
-  m_defaultPiggyMaterial: {fileID: 2100000, guid: c022ac5fc0d103d49846c011d2062d90,
-    type: 2}
-  m_evilPiggyMaterial: {fileID: 2100000, guid: 6769e4018e922874295f7f7e9948de19, type: 2}
 --- !u!114 &470700326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7055,7 +7050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TODO: Multiplayer '
+  m_text: 'Place: 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7082,8 +7077,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13621,12 +13616,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 11.103, y: -57.628, z: 4.854}
---- !u!1 &2125650445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4001544613217319730, guid: 8023868ae4020004ca1069e572f0673a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4001544611897073983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126728602
 GameObject:
   m_ObjectHideFlags: 0
@@ -13716,12 +13705,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1 &919132148226560949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4272014227166687882, guid: 8023868ae4020004ca1069e572f0673a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4001544611897073983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4001544611897073983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13811,9 +13794,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8023868ae4020004ca1069e572f0673a, type: 3}
---- !u!1 &4786072248779494229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8494876064455832170, guid: 8023868ae4020004ca1069e572f0673a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4001544611897073983}
-  m_PrefabAsset: {fileID: 0}

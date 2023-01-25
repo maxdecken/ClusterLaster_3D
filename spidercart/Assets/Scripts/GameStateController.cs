@@ -11,11 +11,9 @@ public class GameStateController : MonoBehaviour
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
     [SerializeField] private TMP_Text countdownText = null;
     [SerializeField] private TMP_Text timeText = null;
+    [SerializeField] private TMP_Text positionText = null;
     [SerializeField] private SceneLoader gameOverLoader = null;
     [SerializeField] private double startPlayerTime = 0f;
-    //Materials for differnt Piggys
-    [SerializeField] private Material m_defaultPiggyMaterial = null;
-    [SerializeField] private Material m_evilPiggyMaterial = null;
     private bool raceStarted = false;
     private bool raceOver = false;
 
@@ -109,19 +107,7 @@ public class GameStateController : MonoBehaviour
         gameOverLoader.LoadScene();
     }
 
-    public void SetKartAndCharacter(PlayerDataContainer playerDataContainer, GameObject playerCarPrefab){
-        GameObject spiderPiggyCharacter = playerCarPrefab.GetComponentInChildren<SpiderPiggyCharacter>().gameObject;
-        GameObject kart_default = playerCarPrefab.GetComponentInChildren<DefaultKart>().gameObject;
-        GameObject kart_evil = playerCarPrefab.GetComponentInChildren<EvilKart>().gameObject;
-        //Set right Material for selected piggy
-        if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyDefault){
-            spiderPiggyCharacter.GetComponent<Renderer>().material = m_defaultPiggyMaterial;
-            kart_default.SetActive(true);
-            kart_evil.SetActive(false);
-        }else if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
-            spiderPiggyCharacter.GetComponent<Renderer>().material = m_evilPiggyMaterial;
-            kart_default.SetActive(false);
-            kart_evil.SetActive(true);
-        }
+    public void SetPlaceText(int place){
+        positionText.text = "Place: " + place.ToString();
     }
 }

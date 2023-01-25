@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private bool isOnTop;
     private LayerMask groundLayer;
     private float timer;
+    private int place;
 
     private GameObject checkpointContainer;
     private List<GameObject> checkPointTriggerList;
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         if(!controllsAllowed){
             if(gameStateController.IsRaceStarted()){
                 controllsAllowed = true;
+                StartCoroutine(SetPlaceCoroutine());
             }
         }
         // is on top check
@@ -152,7 +154,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             //float steerInput = joystick.ReadValue<Vector2>().x;
             //transform.Rotate(Vector3.up * steerInput * Movement.magnitude * steeringStrength * Time.deltaTime);
 
-            float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityY;
+            float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityX;
             rigidbody.AddTorque(transform.up * turnAmmount * velocity);
             
             // Drag
@@ -283,5 +285,42 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     {
         Debug.Log(lastCheckPoint);
         return lastCheckPoint;
+    }
+
+    public IEnumerator SetPlaceCoroutine()
+    {   
+        while(!raceFinished){
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            int numInFront = 0;
+            int currentPlayerCheckpointIndex = checkPointTriggerList.IndexOf(lastCheckPoint);
+            foreach(GameObject player in players){
+                //if(GameObject.ReferenceEquals(player, this)){
+                    PlayerController otherPlayerPlayerController = player.GetComponent<PlayerController>();
+
+                    if(otherPlayerPlayerController.raceFinished){
+                        numInFront++;
+                    }else{
+                        int otherPlayerCheckpointIndex = checkPointTriggerList.IndexOf(otherPlayerPlayerController.getLastCheckPoint());
+                        if(otherPlayerCheckpointIndex > currentPlayerCheckpointIndex){
+                            //If that is the case the other player is already at the next checktpoint and so infront
+                            numInFront ++;
+                        }else if(otherPlayerCheckpointIndex == currentPlayerCheckpointIndex){
+                            //Clac if other is in front
+                            Vector3 directionToOtherPlayer = transform.position - player.transform.position;
+                            float angleToOtherPlayer = Vector3.Angle(transform.forward, directionToOtherPlayer);
+
+                            if (Mathf.Abs(angleToOtherPlayer) < 90){
+                                //If that is the case the other player is infront
+                                numInFront++;
+                            }
+                        }
+                    }
+                }
+            //}
+            place = numInFront;
+            gameStateController.SetPlaceText(place);
+            //Only check every 0.5 sec
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

@@ -18,8 +18,8 @@ public class PunGameData : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start() {
         Instance = this;
-        testMsg = "random: " + Random.Range(-20.0f, 30.0f);
-        testMsgObject.text = testMsg;
+        //testMsg = "random: " + Random.Range(-20.0f, 30.0f);
+        //testMsgObject.text = testMsg;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
