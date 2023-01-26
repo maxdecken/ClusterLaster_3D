@@ -151,8 +151,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             rigidbody.AddForce(Movement);
             
             // Steering
-            float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityX;
-            rigidbody.AddTorque(transform.up * turnAmmount * velocity);
+            // Physic based
+            //float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityX;
+            //rigidbody.AddTorque(transform.up * turnAmmount * velocity);
+            // Rotation based
+            float steerInput = joystick.ReadValue<Vector2>().x;
+            transform.Rotate(Vector3.up * steerInput);
             
             // Drag
             Movement *= dragStrength;
