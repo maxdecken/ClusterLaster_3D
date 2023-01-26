@@ -1086,7 +1086,7 @@ MonoBehaviour:
   velocity: 20
   maxVelocity: 15
   dragStrength: 0.2
-  steeringStrength: 1
+  steeringStrength: 0.01
   controllerSensitiyityX: 6000
   controllerSensitiyityY: 10000
   playerAnimations: {fileID: 7155442205200244736}
