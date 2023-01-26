@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class GameStateController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameStateController : MonoBehaviour
     [SerializeField] private double startPlayerTime = 0f;
     private bool raceStarted = false;
     private bool raceOver = false;
+    public int place = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,7 @@ public class GameStateController : MonoBehaviour
     }
 
     public void OnExitInPause(){
+        PhotonNetwork.Disconnect();
         Time.timeScale = 1;  
     }
 
@@ -103,11 +106,13 @@ public class GameStateController : MonoBehaviour
         double currentPlayerTime = Time.timeAsDouble;
         double timeDelta = currentPlayerTime - startPlayerTime;
         playerDataContainer.PlayerTime = timeDelta;
+        playerDataContainer.PlayerPlace = place;
         yield return new WaitForSeconds(3f);
+        PhotonNetwork.Disconnect();
         gameOverLoader.LoadScene();
     }
 
-    public void SetPlaceText(int place){
+    public void SetPlaceText(){
         positionText.text = "Place: " + place.ToString();
     }
 }

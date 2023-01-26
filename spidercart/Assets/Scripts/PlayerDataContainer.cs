@@ -14,5 +14,5 @@ public class PlayerDataContainer : MonoBehaviour
     public double PlayerTime { get; set; } = 0;
 
     //Place to Store and Pass on the place (muliplayer) of the player after the race
-    public double PlayerPlace { get; set; } = 1; 
+    public int PlayerPlace { get; set; } = 1; 
 }

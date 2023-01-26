@@ -8,6 +8,7 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
     [SerializeField] private TMP_Text currentTimeText = null;
     [SerializeField] private TMP_Text bestTimeText = null;
+    [SerializeField] private TMP_Text placeText = null;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,13 @@ public class GameOverController : MonoBehaviour
     }
 
     private void SetText(){
+        //Set Place Text
+        int place = playerDataContainer.PlayerPlace;
+        if(place <= 1){
+            placeText.text = "YOU HAVE WON!!! Place: " + place.ToString();
+        }else{
+            placeText.text = "Place: " + place.ToString();
+        }
         //Help for formatting from here: https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
         int minutesCurrent = Mathf.FloorToInt((float) playerDataContainer.PlayerTime / 60f);
         int secondsCurrent = Mathf.FloorToInt((float) (playerDataContainer.PlayerTime - minutesCurrent * 60));

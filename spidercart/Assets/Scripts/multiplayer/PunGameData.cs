@@ -12,6 +12,8 @@ public class PunGameData : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static PunGameData Instance;
 
+    public int NumberPlayersFinished = 0;
+
     public string testMsg;
 
     public TMP_Text testMsgObject;
@@ -20,6 +22,14 @@ public class PunGameData : MonoBehaviourPunCallbacks, IPunObservable
         Instance = this;
         //testMsg = "random: " + Random.Range(-20.0f, 30.0f);
         //testMsgObject.text = testMsg;
+    }
+
+    public void PlayerFinishedRace(){
+        NumberPlayersFinished++;
+    }
+
+    public int GetNumberPlayersFinished(){
+        return NumberPlayersFinished;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
