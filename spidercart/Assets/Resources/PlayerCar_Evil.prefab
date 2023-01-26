@@ -1826,10 +1826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2880f22b98e934fa3a8d52dd0d09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 50
+  velocity: 20
   maxVelocity: 15
-  dragStrength: 0.99
-  steeringStrength: 20
+  dragStrength: 0.5
+  steeringStrength: 1
   controllerSensitiyityX: 8000
   controllerSensitiyityY: 10000
   playerAnimations: {fileID: 7155442205200244736}
