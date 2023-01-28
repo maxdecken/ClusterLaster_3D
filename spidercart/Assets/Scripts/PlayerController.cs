@@ -11,12 +11,14 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
-    [SerializeField] private float velocity = 50;
+    [Header("Driving-Behavoir")]
+    [SerializeField] private float velocity = 200000;
     [SerializeField] private float maxVelocity = 15;
     [SerializeField] private float dragStrength = 0.99f;
-    [SerializeField] private float steeringStrength = 20;
-    [SerializeField] private int controllerSensitiyityX = 8000;
-    [SerializeField] private int controllerSensitiyityY = 10000;
+    [SerializeField] private float steeringStrength = 60;
+    [SerializeField] private float maxAngularVelocity = 10;
+
+    [Header("References")]
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
@@ -71,7 +73,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             
             checkPointTriggerList.Add(checkpointTrigger);
         }
-        
     }
 
     
@@ -79,6 +80,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        //Set max angular velocity for turning
+        rigidbody.maxAngularVelocity = maxAngularVelocity;
+
         //Binding if using Keyboard/ Editor
         joystick.AddCompositeBinding("Dpad")
             .With("Up", "<Keyboard>/w")
@@ -147,20 +151,24 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 playerAnimations.SetBool("startRace", true);
             }
             // Movement
-            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y * controllerSensitiyityY;
+            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
+            //Vector3 velocityInput = transform.forward * velocity * joystick.ReadValue<Vector2>().y;
+            Movement *= dragStrength;
+            Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
             rigidbody.AddForce(Movement);
             
             // Steering
             // Physic based
-            //float turnAmmount = joystick.ReadValue<Vector2>().x * controllerSensitiyityX;
-            //rigidbody.AddTorque(transform.up * turnAmmount * velocity);
+            float turnAmmount = joystick.ReadValue<Vector2>().x;
+            rigidbody.AddTorque(transform.up * turnAmmount * velocity);
             // Rotation based
-            float steerInput = joystick.ReadValue<Vector2>().x;
-            transform.Rotate(Vector3.up * steerInput/10 * Movement.magnitude * steeringStrength * Time.deltaTime);
+            //float steerInput = joystick.ReadValue<Vector2>().x;
+            //transform.Rotate(Vector3.up * steerInput/10 * Movement.magnitude * steeringStrength * Time.deltaTime);
             
             // Drag
-            Movement *= dragStrength;
-            Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
+            //Movement *= dragStrength;
+            //Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
+            //rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxVelocity);
 
             //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
             int randomHonkingHorn = Random.Range(0, 10001);

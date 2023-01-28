@@ -2246,12 +2246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2880f22b98e934fa3a8d52dd0d09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 20
-  maxVelocity: 15
-  dragStrength: 0.2
-  steeringStrength: 0.01
-  controllerSensitiyityX: 6000
-  controllerSensitiyityY: 10000
+  velocity: 200000
+  maxVelocity: 300000
+  dragStrength: 0.9
+  steeringStrength: 60
+  maxAngularVelocity: 3.5
   playerAnimations: {fileID: 7155442205200244736}
   gameStateController: {fileID: 0}
   checkpointChecker: {fileID: 0}
