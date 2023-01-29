@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             PlayerController.LocalPlayerInstance = this.gameObject;
             controllsAllowed = false;
 
+            gameStateController.SetPlayerController(this);
             
             StartingPosition =  GameObject.Find("StartingPosition");
 

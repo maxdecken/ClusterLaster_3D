@@ -57,6 +57,10 @@ public class GameStateController : MonoBehaviour
         }
     }
 
+    public void SetPlayerController(PlayerController playerController){
+        player = playerController;
+    }
+
     // Help for Pause from here: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
     public void PauseGame ()
     {
@@ -70,6 +74,14 @@ public class GameStateController : MonoBehaviour
         Time.timeScale = 1;
         play_canvas.SetActive(true);
         pause_canvas.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        Time.timeScale = 1;
+        play_canvas.SetActive(true);
+        pause_canvas.SetActive(false);
+        player.respawn();
     }
 
     public void OnExitInPause(){
