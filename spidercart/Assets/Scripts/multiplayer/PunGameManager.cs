@@ -99,7 +99,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     selectedPlayerPrefab.name,
                     new Vector3(
                         -151.81f,
-                        64.14f,
+                        65.14f,
                         4 + PhotonNetwork.LocalPlayer.ActorNumber + 1
                     ),
                     new Quaternion(

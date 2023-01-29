@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float maxAngularVelocity = 10;
 
     [Header("References")]
+    private float vehicleSize;
+    private int wheelsOnGround = 0;
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         rigidbody = GetComponent<Rigidbody>();
         //Set max angular velocity for turning
         rigidbody.maxAngularVelocity = maxAngularVelocity;
+
+        vehicleSize = GetComponent<BoxCollider>().bounds.extents.y;
 
         //Binding if using Keyboard/ Editor
         joystick.AddCompositeBinding("Dpad")
@@ -150,30 +154,33 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             if(!startRaceStateSet){
                 playerAnimations.SetBool("startRace", true);
             }
-            // Movement
-            Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
-            //Vector3 velocityInput = transform.forward * velocity * joystick.ReadValue<Vector2>().y;
-            Movement *= dragStrength;
-            Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
-            rigidbody.AddForce(Movement);
-            
-            // Steering
-            // Physic based
-            float turnAmmount = joystick.ReadValue<Vector2>().x;
-            rigidbody.AddTorque(transform.up * turnAmmount * velocity);
-            // Rotation based
-            //float steerInput = joystick.ReadValue<Vector2>().x;
-            //transform.Rotate(Vector3.up * steerInput/10 * Movement.magnitude * steeringStrength * Time.deltaTime);
-            
-            // Drag
-            //Movement *= dragStrength;
-            //Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
-            //rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxVelocity);
+            if(isOnTop){
+                Debug.Log("Can Move: " + isOnTop);
+                // Movement
+                Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
+                //Vector3 velocityInput = transform.forward * velocity * joystick.ReadValue<Vector2>().y;
+                Movement *= dragStrength;
+                Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
+                rigidbody.AddForce(Movement);
+                
+                // Steering
+                // Physic based
+                float turnAmmount = joystick.ReadValue<Vector2>().x;
+                rigidbody.AddTorque(transform.up * turnAmmount * velocity);
+                // Rotation based
+                //float steerInput = joystick.ReadValue<Vector2>().x;
+                //transform.Rotate(Vector3.up * steerInput/10 * Movement.magnitude * steeringStrength * Time.deltaTime);
+                
+                // Drag
+                //Movement *= dragStrength;
+                //Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
+                //rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxVelocity);
 
-            //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
-            int randomHonkingHorn = Random.Range(0, 10001);
-            if(randomHonkingHorn == 10000){
-                playerAnimations.SetTrigger("honkingHorn");
+                //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
+                int randomHonkingHorn = Random.Range(0, 10001);
+                if(randomHonkingHorn == 10000){
+                    playerAnimations.SetTrigger("honkingHorn");
+                }
             }
         }
 
@@ -248,12 +255,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     public IEnumerator allowControlsAfterSeconds()
-        {
-            respawnCooldown = true;
-            yield return new WaitForSeconds(0.8f);
-            respawnCooldown = false;
-            //steeringStrength = saveSteeringStrength;
-        }
+    {
+        respawnCooldown = true;
+        yield return new WaitForSeconds(0.8f);
+        respawnCooldown = false;
+        //steeringStrength = saveSteeringStrength;
+    }
 
     /****
     ************* MULTIPLAYER STUFF ***************
