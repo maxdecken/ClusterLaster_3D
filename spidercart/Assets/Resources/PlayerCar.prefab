@@ -2246,11 +2246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2880f22b98e934fa3a8d52dd0d09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 200000
-  maxVelocity: 300000
+  velocity: 100000
+  maxVelocity: 200000
   dragStrength: 0.9
-  steeringStrength: 60
-  maxAngularVelocity: 3.5
+  steeringStrength: 40000
+  maxAngularVelocity: 4
   playerAnimations: {fileID: 7155442205200244736}
   gameStateController: {fileID: 0}
   checkpointChecker: {fileID: 0}
@@ -2284,9 +2284,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4001544613400350967}
   serializedVersion: 2
-  m_Mass: 3500
+  m_Mass: 4500
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

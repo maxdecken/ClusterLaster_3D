@@ -155,26 +155,53 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 playerAnimations.SetBool("startRace", true);
             }
             if(isOnTop){
-                Debug.Log("Can Move: " + isOnTop);
-                // Movement
-                Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
-                //Vector3 velocityInput = transform.forward * velocity * joystick.ReadValue<Vector2>().y;
-                Movement *= dragStrength;
-                Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
-                rigidbody.AddForce(Movement);
-                
                 // Steering
                 // Physic based
-                float turnAmmount = joystick.ReadValue<Vector2>().x;
-                rigidbody.AddTorque(transform.up * turnAmmount * velocity);
-                // Rotation based
-                //float steerInput = joystick.ReadValue<Vector2>().x;
-                //transform.Rotate(Vector3.up * steerInput/10 * Movement.magnitude * steeringStrength * Time.deltaTime);
-                
-                // Drag
+                //float turnAmmount = joystick.ReadValue<Vector2>().x;
+                //rigidbody.AddTorque(transform.up * turnAmmount * steeringStrength);
+                //if (turnAmmount != 0) {
+                //    rigidbody.AddForce(transform.forward  * 10000f);
+                //}
+//
+                //Debug.Log("Can Move: " + isOnTop);
+                //// Movement
+                //Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
                 //Movement *= dragStrength;
                 //Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
-                //rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxVelocity);
+                //rigidbody.AddForce(Movement);
+                
+                float currentSpeed = rigidbody.velocity.magnitude;
+
+                // apply inputs to forward/backward
+                float turnAmmount = joystick.ReadValue<Vector2>().x;
+                float turningPower = turnAmmount * steeringStrength;
+
+                Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
+                Vector3 fwd = turnAngle * transform.forward;
+                Vector3 movement = fwd * velocity * joystick.ReadValue<Vector2>().y;
+
+                // forward movement
+                bool wasOverMaxSpeed = currentSpeed >= maxVelocity;
+
+                // if over max speed, cannot accelerate faster.
+                if (wasOverMaxSpeed) 
+                    movement *= 0.0f;
+
+                Vector3 newVelocity = rigidbody.velocity + movement * Time.fixedDeltaTime;
+                newVelocity.y = rigidbody.velocity.y;
+                
+                rigidbody.velocity = newVelocity;
+
+                var angularVel = rigidbody.angularVelocity;
+
+                // move the Y angular velocity towards our target
+                angularVel.y = Mathf.MoveTowards(angularVel.y, turningPower * 0.4f, Time.fixedDeltaTime * 20f);
+
+                // apply the angular velocity
+                rigidbody.angularVelocity = angularVel;
+
+                Vector3 localVel = transform.InverseTransformVector(rigidbody.velocity);
+                rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * steeringStrength * Time.fixedDeltaTime, transform.up) * rigidbody.velocity;
 
                 //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
                 int randomHonkingHorn = Random.Range(0, 10001);
