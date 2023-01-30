@@ -333,9 +333,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             foreach(GameObject player in players){
                 PlayerController otherPlayerPlayerController = player.GetComponent<PlayerController>();
 
-                if(otherPlayerPlayerController.raceFinished){
-                    numInFront++;
-                }else{
+                if(!otherPlayerPlayerController.raceFinished){
                     int otherPlayerCheckpointIndex = otherPlayerPlayerController.nextCheckPointTriggerIndex;
                     if(otherPlayerCheckpointIndex > currentPlayerCheckpointIndex){
                         //If that is the case the other player is already at the next checktpoint and so infront

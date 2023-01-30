@@ -15,4 +15,7 @@ public class PlayerDataContainer : MonoBehaviour
 
     //Place to Store and Pass on the place (muliplayer) of the player after the race
     public int PlayerPlace { get; set; } = 1; 
+
+    //Set if race was completet or not
+    public bool RaceFinished = false;
 }

@@ -33,7 +33,8 @@ public class PunGameManager : MonoBehaviourPunCallbacks
     /// &lt;/summary&gt;
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        //PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
+        SceneManager.LoadScene(3);
     }
 
     #endregion
@@ -99,7 +100,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     selectedPlayerPrefab.name,
                     new Vector3(
                         -151.81f,
-                        65.14f,
+                        64.14f,
                         4 + PhotonNetwork.LocalPlayer.ActorNumber + 1
                     ),
                     new Quaternion(
@@ -110,7 +111,8 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     ),
                     0
                 );
-                //myPlayerPrefabInstance.GetComponent<PlayerController>().SetKartAndCharacter(playerDataContainer);
+                //Set unique name for Kart to compare in Collider
+                myPlayerPrefabInstance.name = "Kart_" + PhotonNetwork.LocalPlayer.ActorNumber.ToString();
             }
         }
     }

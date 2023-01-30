@@ -11,7 +11,7 @@ public class Camera_third_person : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     private Vector3 camPosition;
     
-    [SerializeField] private Transform lookAt;
+    [SerializeField] public Transform lookAt = null;
     
     
     

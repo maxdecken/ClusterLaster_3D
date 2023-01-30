@@ -6,9 +6,10 @@ using Photon.Pun;
 
 public class GameStateController : MonoBehaviour
 {
+    //[SerializeField] private Camera_third_person thirdPersonCam = null;
     [SerializeField] private GameObject play_canvas = null;
     [SerializeField] private GameObject pause_canvas = null;
-    [SerializeField] private PlayerController player = null;
+    [SerializeField] public PlayerController player = null;
     [SerializeField] private PlayerDataContainer playerDataContainer = null;
     [SerializeField] private TMP_Text countdownText = null;
     [SerializeField] private TMP_Text timeText = null;
@@ -59,6 +60,13 @@ public class GameStateController : MonoBehaviour
 
     public void SetPlayerController(PlayerController playerController){
         player = playerController;
+        //Debug.Log("Setting lookAt");
+        //foreach(Transform child in transform){
+        //    if(child.gameObject.name == "lookAt"){
+        //        Debug.Log("Found lookAt");
+        //        thirdPersonCam.lookAt = child;
+        //    }
+        //}
     }
 
     // Help for Pause from here: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
@@ -113,15 +121,18 @@ public class GameStateController : MonoBehaviour
     }
 
     IEnumerator RaceOverSequence(){
+        player.raceFinished = true;
+        PunGameData gameData = GameObject.FindObjectOfType<PunGameData>();
+        gameData.PlayerFinishedRace();
         raceOver = true;
         timeText.text = "";
         double currentPlayerTime = Time.timeAsDouble;
         double timeDelta = currentPlayerTime - startPlayerTime;
         playerDataContainer.PlayerTime = timeDelta;
         playerDataContainer.PlayerPlace = place;
-        yield return new WaitForSeconds(3f);
-        PhotonNetwork.Disconnect();
-        gameOverLoader.LoadScene();
+        playerDataContainer.RaceFinished = true;
+        yield return new WaitForSeconds(2f);
+        PhotonNetwork.LeaveRoom();
     }
 
     public void SetPlaceText(){

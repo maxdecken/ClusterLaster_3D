@@ -9,13 +9,15 @@ public class FinishLine : MonoBehaviour
     [SerializeField] private AudioSource FinishSound;
 
     void Start(){
-        if(player == null){
-            player = FindObjectOfType<PlayerController>();
-        }
+        
     }
     
     private void OnTriggerEnter(Collider collider){
-        //Debug.Log(collider.gameObject.name);
+        Debug.Log(collider.gameObject.name);
+        if(player == null){
+            player = gameStateController.player;
+        }
+        Debug.Log(player.gameObject.name);
         if(collider.gameObject.name == player.gameObject.name){
             Debug.Log("Race Finished!!!");
             gameStateController.RaceFinished();
