@@ -326,24 +326,26 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         while(!raceFinished){
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             int numInFront = 0;
-            int currentPlayerCheckpointIndex = checkPointTriggerList.IndexOf(lastCheckPoint);
+            //int currentPlayerCheckpointIndex = checkPointTriggerList.IndexOf(lastCheckPoint);
+            int currentPlayerCheckpointIndex = nextCheckPointTriggerIndex;
+            //Debug.Log("currentPlayerCheckpointIndex: " + currentPlayerCheckpointIndex);
+            //Debug.Log("Dist next Checkpoint: " + Vector3.Distance(this.transform.position, checkPointTriggerList[nextCheckPointTriggerIndex].transform.position).ToString());
             foreach(GameObject player in players){
                 PlayerController otherPlayerPlayerController = player.GetComponent<PlayerController>();
 
                 if(otherPlayerPlayerController.raceFinished){
                     numInFront++;
                 }else{
-                    int otherPlayerCheckpointIndex = checkPointTriggerList.IndexOf(otherPlayerPlayerController.getLastCheckPoint());
+                    int otherPlayerCheckpointIndex = otherPlayerPlayerController.nextCheckPointTriggerIndex;
                     if(otherPlayerCheckpointIndex > currentPlayerCheckpointIndex){
                         //If that is the case the other player is already at the next checktpoint and so infront
                         numInFront ++;
                     }else if(otherPlayerCheckpointIndex == currentPlayerCheckpointIndex){
                         //Clac if other is in front
-                        Vector3 directionToOtherPlayer = transform.position - player.transform.position;
-                        float angleToOtherPlayer = Vector3.Angle(transform.forward, directionToOtherPlayer);
-
-                        if (Mathf.Abs(angleToOtherPlayer) < 90){
-                            //If that is the case the other player is infront
+                        GameObject nextCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
+                        float distCurrentPlayer = Vector3.Distance(this.transform.position, nextCheckPoint.transform.position);
+                        float distOtherPlayer = Vector3.Distance(player.transform.position, nextCheckPoint.transform.position);
+                        if(distOtherPlayer <= distCurrentPlayer){
                             numInFront++;
                         }
                     }
