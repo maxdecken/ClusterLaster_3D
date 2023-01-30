@@ -5,7 +5,10 @@ using TMPro;
 
 public class GameOverController : MonoBehaviour
 {
-    [SerializeField] private PlayerDataContainer playerDataContainer = null;
+    private PlayerDataContainer playerDataContainer = null;
+    [SerializeField] private GameObject defaultSpiderPiggy = null;
+    [SerializeField] private GameObject evilSpiderPiggy = null;
+    private GameObject currentSpiderPiggy = null;
     [SerializeField] private TMP_Text currentTimeText = null;
     [SerializeField] private TMP_Text bestTimeText = null;
     [SerializeField] private TMP_Text placeText = null;
@@ -25,8 +28,20 @@ public class GameOverController : MonoBehaviour
             playerDataContainerGameObject.AddComponent<DontDestroy>();
 
             playerDataContainer = playerDataContainerGameObject.GetComponent<PlayerDataContainer>();
+            playerDataContainer.playerCharacterType = PlayerDataContainer.CharacterType.SpiderPiggyEvil;
+            playerDataContainer.PlayerPlace = 1;
+            playerDataContainer.PlayerTime = 143.5f;
         }
 #endif
+        if(playerDataContainer.playerCharacterType == PlayerDataContainer.CharacterType.SpiderPiggyEvil){
+            defaultSpiderPiggy.SetActive(false);
+            evilSpiderPiggy.SetActive(true);
+            currentSpiderPiggy = evilSpiderPiggy;
+        }else{
+            defaultSpiderPiggy.SetActive(true);
+            evilSpiderPiggy.SetActive(false);
+            currentSpiderPiggy = defaultSpiderPiggy;
+        }
         SetText();
     }
 
@@ -35,8 +50,10 @@ public class GameOverController : MonoBehaviour
         int place = playerDataContainer.PlayerPlace;
         if(place <= 1){
             placeText.text = "YOU HAVE WON!!! Place: " + place.ToString();
+            currentSpiderPiggy.GetComponent<Animator>().SetBool("isCheeringStanding", true);
         }else{
             placeText.text = "Place: " + place.ToString();
+            currentSpiderPiggy.GetComponent<Animator>().SetBool("isDefeatedStanding", true);
         }
         //Help for formatting from here: https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
         int minutesCurrent = Mathf.FloorToInt((float) playerDataContainer.PlayerTime / 60f);
