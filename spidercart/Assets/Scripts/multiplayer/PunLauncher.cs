@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
@@ -18,6 +19,13 @@ public class PunLauncher : MonoBehaviourPunCallbacks
     [Tooltip("The UI Label to inform the user that the connection is in progress")]
     [SerializeField]
     private GameObject progressLabel;
+
+    [SerializeField]
+    private GameObject roomPlayersLabel;
+
+    [SerializeField]
+    private GameObject startButton;
+
 
     #endregion
 
@@ -47,6 +55,7 @@ public class PunLauncher : MonoBehaviourPunCallbacks
     /// &lt;/summary&gt;
     void Start()
     {
+        startButton.SetActive(false);
         Connect();
     }
 
@@ -98,14 +107,69 @@ public class PunLauncher : MonoBehaviourPunCallbacks
 
         // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+
+        // User is room creater so only alow him to start the game
+        startButton.SetActive(true);
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("PUN: OnJoinedRoom() called by PUN. Now this client is in a room.");
         progressLabel.GetComponent<TMP_Text>().text += "\njoined room";
+        updateRoomPlayerLabel();
+    }
+
+    public override void OnLeftRoom()
+    {
+        Debug.Log("PUN: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        progressLabel.GetComponent<TMP_Text>().text += "\\nleft room";
+    }
+
+    public override void OnPlayerEnteredRoom(Player other)
+    {
+        Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
+        progressLabel.GetComponent<TMP_Text>().text += "\nPlayer joined: " + other.NickName;
+        updateRoomPlayerLabel();
+
+        if (PhotonNetwork.IsMasterClient) {
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
+        }
+    }
+
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
+        progressLabel.GetComponent<TMP_Text>().text += "\nPlayer left: " + other.NickName;
+        updateRoomPlayerLabel();
+
+        if (PhotonNetwork.IsMasterClient) {
+            Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
+        }
+    }
+
+    private void updateRoomPlayerLabel () {
+        string playListString = "Players in Room: ";
+        Dictionary<int, Photon.Realtime.Player> pList = PhotonNetwork.CurrentRoom.Players;
+        foreach (KeyValuePair<int, Photon.Realtime.Player> p in pList) {
+            playListString += "\n" + p.Value.NickName;
+        }
+        roomPlayersLabel.GetComponent<TMP_Text>().text = playListString;
     }
 
     #endregion
 
+
+    public void goToMainScene () {
+        if (PhotonNetwork.CurrentRoom != null) {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void goBack () {
+        // First disable game manager to prevent player from being redirected to end scene
+        GameObject.Find("MultiplayerGameManager").SetActive(false);
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("StartScene");
+    }
 }
