@@ -111,6 +111,16 @@ public class GameStateController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         countdownText.text = "";
+
+        // Set Name of all Players
+        // Todo Find a better way than here
+        // Problem: In PunGameManager I dont have an event thats called when a prefab is initiated
+        // Here I am sure, that all the player prefabs are initiated
+        //Dictionary<int, Photon.Realtime.Player> pList = PhotonNetwork.CurrentRoom.Players;
+        //foreach (KeyValuePair<int, Photon.Realtime.Player> p in pList) {
+        //    string kartName = "Kart_" + p.Value.NickName;
+        //    GameObject.Find(kartName).transform.Find("PlayerTag").GetComponent<TMP_Text>().text = p.Value.NickName;
+        //}
     }
 
     public bool IsRaceStarted(){

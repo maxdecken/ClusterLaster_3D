@@ -93,7 +93,7 @@ public class PunGameManager : MonoBehaviourPunCallbacks
                     0
                 );
                 //Set unique name for Kart to compare in Collider
-                myPlayerPrefabInstance.name = "Kart_" + PhotonNetwork.LocalPlayer.ActorNumber.ToString();
+                myPlayerPrefabInstance.name = "Kart_" + PhotonNetwork.LocalPlayer.NickName;
             }
         }
     }
