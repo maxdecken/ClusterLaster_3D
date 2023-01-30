@@ -2138,9 +2138,9 @@ GameObject:
   - component: {fileID: 4001544613400350961}
   - component: {fileID: 5987203321101601023}
   - component: {fileID: 910661537928352400}
-  - component: {fileID: 7181632517168393987}
   - component: {fileID: 4001544613400350965}
   - component: {fileID: 7137323518411047695}
+  - component: {fileID: 7181632517168393987}
   - component: {fileID: 4001544613400350960}
   - component: {fileID: 4001544613400350959}
   - component: {fileID: -1053700307725660032}
@@ -2221,19 +2221,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7181632517168393987
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4001544613400350967}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.061566, y: 1.0265969, z: 0.99999976}
-  m_Center: {x: 0.030783, y: 0.7235206, z: 1.1470003e-10}
 --- !u!114 &4001544613400350965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,10 +2233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2880f22b98e934fa3a8d52dd0d09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 100000
-  maxVelocity: 200000
+  velocity: 20
+  maxVelocity: 50
   dragStrength: 0.9
-  steeringStrength: 40000
+  steeringStrength: 5
   maxAngularVelocity: 4
   playerAnimations: {fileID: 7155442205200244736}
   gameStateController: {fileID: 0}
@@ -2284,14 +2271,27 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4001544613400350967}
   serializedVersion: 2
-  m_Mass: 4500
+  m_Mass: 450
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7181632517168393987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001544613400350967}
+  m_Material: {fileID: 13400000, guid: 36ff4a946a2baba489b4d7fbdf5c0193, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.061566, y: 1.0265969, z: 0.99999976}
+  m_Center: {x: 0.030783, y: 0.7235206, z: 1.1470003e-10}
 --- !u!114 &4001544613400350960
 MonoBehaviour:
   m_ObjectHideFlags: 0

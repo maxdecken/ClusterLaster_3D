@@ -134,7 +134,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         }
         // is on top check
         isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
-        //Debug.Log("Treffer: " + isOnTop);
+
+        bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 0.15f);
+        //Debug.Log("isOnGround: " + isOnGround);
         
         if (isOnTop)
         {
@@ -155,22 +157,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             if(!startRaceStateSet){
                 playerAnimations.SetBool("startRace", true);
             }
-            if(isOnTop){
-                // Steering
-                // Physic based
-                //float turnAmmount = joystick.ReadValue<Vector2>().x;
-                //rigidbody.AddTorque(transform.up * turnAmmount * steeringStrength);
-                //if (turnAmmount != 0) {
-                //    rigidbody.AddForce(transform.forward  * 10000f);
-                //}
-//
-                //Debug.Log("Can Move: " + isOnTop);
-                //// Movement
-                //Movement +=  transform.forward * velocity * joystick.ReadValue<Vector2>().y;
-                //Movement *= dragStrength;
-                //Movement = Vector3.ClampMagnitude(Movement, maxVelocity);
-                //rigidbody.AddForce(Movement);
-                
+            if(isOnGround){
+                // Controlls are based on/ inspired by the Unity-Karting Sample
                 float currentSpeed = rigidbody.velocity.magnitude;
 
                 // apply inputs to forward/backward
