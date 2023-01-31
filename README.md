@@ -1,5 +1,8 @@
 # ClusterLaster: "SpiderPiggy 3D: Let´s Cart!" (3D-Game)
 
+![Logo](https://user-images.githubusercontent.com/94470276/215739062-16b5e568-a96b-4c7c-9266-db3915d0f6a4.png)
+
+
 SpiderPiggy3D ist ein 3D-Spiel für den Game-Engines Kurs des Studiengangs IMI an der HTW-Berlin im Wintersemster 22/23.
 
 ## Getting Started
