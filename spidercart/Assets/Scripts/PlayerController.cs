@@ -122,17 +122,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             transform.Rotate(transform.rotation.x, 440f * Time.deltaTime, transform.rotation.z);
             
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(!controllsAllowed){
-            if(gameStateController.IsRaceStarted()){
-                controllsAllowed = true;
-                StartCoroutine(SetPlaceCoroutine());
-            }
-        }
+        
         // is on top check
         isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
         if (transform.rotation.z > 70 || transform.rotation.z < -70)
@@ -208,6 +198,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 }
             }
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(!controllsAllowed){
+            if(gameStateController.IsRaceStarted()){
+                controllsAllowed = true;
+                StartCoroutine(SetPlaceCoroutine());
+            }
+        }
+        
 
         if(raceFinished){
             if(place <= 1){
