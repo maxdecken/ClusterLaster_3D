@@ -72,21 +72,21 @@ public class GameStateController : MonoBehaviour
     // Help for Pause from here: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
     public void PauseGame ()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         play_canvas.SetActive(false);
         pause_canvas.SetActive(true);
     }
 
     public void ResumeGame ()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         play_canvas.SetActive(true);
         pause_canvas.SetActive(false);
     }
 
     public void Respawn()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         play_canvas.SetActive(true);
         pause_canvas.SetActive(false);
         player.respawn();
@@ -94,7 +94,7 @@ public class GameStateController : MonoBehaviour
 
     public void OnExitInPause(){
         PhotonNetwork.Disconnect();
-        Time.timeScale = 1;  
+        //Time.timeScale = 1;  
     }
 
     IEnumerator StartRace(){

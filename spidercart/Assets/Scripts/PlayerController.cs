@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                         GameObject nextCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
                         float distCurrentPlayer = Vector3.Distance(this.transform.position, nextCheckPoint.transform.position);
                         float distOtherPlayer = Vector3.Distance(player.transform.position, nextCheckPoint.transform.position);
-                        if(distOtherPlayer <= distCurrentPlayer){
+                        if(distOtherPlayer >= distCurrentPlayer){
                             numInFront++;
                         }
                     }
