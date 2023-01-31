@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private bool isSlipping = false;
     private float saveSteeringStrength;
     private float currentRotation;
+    private float anglePush;
 
     //Binding if using On-Screencontrolls (Main Method)
     public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
@@ -164,9 +165,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 float turnAmmount = joystick.ReadValue<Vector2>().x;
                 float turningPower = turnAmmount * steeringStrength;
 
+                if (transform.rotation.x < -20)
+                {
+                    anglePush = 1.2f;
+                }
+                else
+                {
+                    anglePush = 1;
+                }
+
                 Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
                 Vector3 fwd = turnAngle * transform.forward;
-                Vector3 movement = fwd * velocity * joystick.ReadValue<Vector2>().y;
+                Vector3 movement = fwd * velocity * anglePush * joystick.ReadValue<Vector2>().y;
 
                 // forward movement
                 bool wasOverMaxSpeed = currentSpeed >= maxVelocity;
