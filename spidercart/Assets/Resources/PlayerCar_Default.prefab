@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 15
-  maxVelocity: 50
+  maxVelocity: 40
   dragStrength: 0.9
   steeringStrength: 5
   maxAngularVelocity: 4

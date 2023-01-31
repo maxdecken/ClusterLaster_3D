@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
                 if (transform.rotation.x < -20)
                 {
-                    anglePush = 2f;
+                    anglePush = 3f;
                     maxVelocity = maxVelocityOnSteep * 1.5f;
                 }
                 else
