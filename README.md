@@ -15,7 +15,7 @@ Viel Spaß beim spielen!
 
 ## Beschreibung
 
-Bei unserem Cart Racing Game geht es darum...
+Bei unserem Kart Racing Game geht es darum, als erster ins Ziel zu kommen und das so schell wie möglich. 
 
 ### Genre & Art Style
 3D Racing Game, Fun-Racer
@@ -24,9 +24,8 @@ Bei unserem Cart Racing Game geht es darum...
 
 ### Player 
 
-Der Player (Als Prefab implementiert) wird gesteuert mit den WASD Tasten.
-Das Seil wir mit der linken Maustaste bedient.
-Der Player kann auch Items wie Äpfel, Bananen, etc. einsammeln, welche jeweils unterschiedliche Vorteile bringen.
+Der Player (Als Prefab implementiert) wird gesteuert mit den WASD Tasten oder mit dem Touchpad.
+Es gibt 2 Characters: SpiderPiggy und Evil SpiderPiggy. Beide haben jeweils ein eigenes Kart.
 
 ### Obstacles
 
@@ -40,36 +39,24 @@ Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte 
 
 Zu Beginn des Spiels erscheint das Start Menü.
 
-![grafik](https://user-images.githubusercontent.com/68195151/204773267-c47d8269-983f-46c3-b9e8-942706275c5d.png)
+![menü](https://user-images.githubusercontent.com/94470276/215739865-04a02076-c945-4b94-9a53-b63cac132fe7.png)
 
-* Start - Das Main-Game startet
-* Tutorial - Das Tutorial startet
+
+* Race On - Das Main-Game startet
 * Quit - Das Spiel wird beendet
 
 ### Main Game
 
-Das Herzstück des Spiels: Die sich automatisch / zufällig während dem Gameplay aufbauende Endlessrunner-Szene. Hier geht es darum den höchstmöglichen Score zu erreichen und dabei nicht zu sterben. In das Feuer zu fallen oder die "ESC"-Taste drücken beendet das Spiel.
-
-![grafik](https://user-images.githubusercontent.com/68195151/204862896-e4f63271-089c-4085-9fc9-c3c930ae9225.png)
-![grafik](https://user-images.githubusercontent.com/68195151/204863417-930feb32-66b9-4296-91a4-81af09f4d1a1.png)
-
-### Tutorial Level
-
-Hier wird dem Spieler in einem Mini-Level die Steuerung erklärt.
-
-![grafik](https://user-images.githubusercontent.com/68195151/205256954-2ae90333-2e44-4153-8ee7-3145107c485f.png)
-
-* Start - Das Main-Game startet
-* Main Menu - Rückkehr zum Startmenu
+Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als erster ins Ziel kommen. 
 
 
-### GameOver Menü 
+### Race Complete Menü
 
-Wenn der Player stirbt erscheint das Game-Over-Menü. Hier wird der aktuell erreichte Score sowie der bisherige Highscore angezeigt.
+Wenn der Player ins Ziel fährt, erscheint das Race-Complete-Menü. Hier wird der aktuell erreichte Platz, die Zeit, sowie der bisherige Highscore angezeigt.
 
-![grafik](https://user-images.githubusercontent.com/68195151/204773755-0328c6cf-c544-4e68-b3a7-a1408735b4ab.png)
+![complete](https://user-images.githubusercontent.com/94470276/215740441-535494d0-f786-4f8a-9bfd-b16d8e1dfa35.png)
 
-* Try Again - Das Main-Game startet erneut
+* Race Again - Das Main-Game startet erneut
 * Main Menu - Rückkehr zum Startmenü
 
 ### Player Control
@@ -95,10 +82,10 @@ Software
 * Die Möwe wurde ebenfalls mit Dall-E (https://openai.com/dall-e-2/) generiert und in Photoshop in mehrere Tiles umgesetzt.
 
 #### Music
-* Game Soundtrack: https://pixabay.com/de/music/frohliche-kinderlieder-fun-happy-50s-pop-113298/
+* Game Soundtrack: https://pixabay.com/de/music/optimistisch-electro-pop-124340/
 
 #### Sounds
-* Item Sound 1: https://freesound.org/people/BloodPixelHero/sounds/591706/
+* Countdown: https://elements.envato.com/de/race-countdown-7DDRG4V
 
 
 #### Code
