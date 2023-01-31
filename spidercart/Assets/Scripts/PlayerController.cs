@@ -138,8 +138,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             isOnSide = false;
         }
 
-        bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 0.15f);
-        //Debug.Log("isOnGround: " + isOnGround);
+        bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 2.15f);
+        Debug.Log("isOnGround: " + isOnGround);
         
         if (isOnTop || isOnSide)
         {
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 if (transform.rotation.x < -20)
                 {
                     anglePush = 30f;
-                    maxVelocity = maxVelocityOnSteep * 1.5f;
+                    maxVelocity = maxVelocityOnSteep * 1000.5f;
                 }
                 else
                 {
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
                 // if over max speed, cannot accelerate faster.
                 if (wasOverMaxSpeed) 
-                    movement *= 0.0f;
+                    movement *= 1.0f;
 
                 Vector3 newVelocity = rigidbody.velocity + movement * Time.fixedDeltaTime;
                 newVelocity.y = rigidbody.velocity.y;
@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             
                 Vector3 localVel = transform.InverseTransformVector(rigidbody.velocity);
                 rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * steeringStrength * Time.fixedDeltaTime, transform.up) * rigidbody.velocity;
-
+                
                 //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
                 int randomHonkingHorn = Random.Range(0, 10001);
                 if(randomHonkingHorn == 10000){
