@@ -181,13 +181,13 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 rigidbody.velocity = newVelocity;
 
                 var angularVel = rigidbody.angularVelocity;
-
+        
                 // move the Y angular velocity towards our target
                 angularVel.y = Mathf.MoveTowards(angularVel.y, turningPower * 0.4f, Time.fixedDeltaTime * 20f);
 
                 // apply the angular velocity
                 rigidbody.angularVelocity = angularVel;
-
+            
                 Vector3 localVel = transform.InverseTransformVector(rigidbody.velocity);
                 rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * steeringStrength * Time.fixedDeltaTime, transform.up) * rigidbody.velocity;
 
@@ -354,7 +354,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                         GameObject nextCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
                         float distCurrentPlayer = Vector3.Distance(this.transform.position, nextCheckPoint.transform.position);
                         float distOtherPlayer = Vector3.Distance(player.transform.position, nextCheckPoint.transform.position);
-                        if(distOtherPlayer <= distCurrentPlayer){
+                        if(distOtherPlayer >= distCurrentPlayer){
                             numInFront++;
                         }
                     }
