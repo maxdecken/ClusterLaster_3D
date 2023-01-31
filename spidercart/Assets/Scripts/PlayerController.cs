@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private float saveSteeringStrength;
     private float currentRotation;
     private float anglePush;
+    private float maxVelocityOnSteep;
 
     //Binding if using On-Screencontrolls (Main Method)
     public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
@@ -112,6 +113,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             cm.GetComponent<CinemachineFreeLook>().Follow = this.transform;
             cm.GetComponent<CinemachineFreeLook>().LookAt = cameraLookAt.transform;
         }
+
+        maxVelocityOnSteep = maxVelocity;
     }
     
     private void FixedUpdate()
@@ -167,11 +170,13 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
                 if (transform.rotation.x < -20)
                 {
-                    anglePush = 1.2f;
+                    anglePush = 2f;
+                    maxVelocity = maxVelocityOnSteep * 1.5f;
                 }
                 else
                 {
                     anglePush = 1;
+                    maxVelocity = maxVelocityOnSteep;
                 }
 
                 Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
