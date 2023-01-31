@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private float RayDistance = 3;
     private Rigidbody rigidbody;
     private bool isOnTop;
+    private bool isOnSide;
     private LayerMask groundLayer;
     private float timer;
     private int place;
@@ -134,23 +135,31 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         }
         // is on top check
         isOnTop = Physics.Raycast(transform.position, Vector3.up, RayDistance);
+        if (transform.rotation.z > 70 || transform.rotation.z < -70)
+        {
+            isOnSide = true;
+        }
+        else
+        {
+            isOnSide = false;
+        }
 
         bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 0.15f);
         //Debug.Log("isOnGround: " + isOnGround);
         
-        if (isOnTop)
+        if (isOnTop || isOnSide)
         {
             timer = 0.0f;
             //return;
         }
 
         timer += Time.deltaTime;
-        if (timer > 4.0f)
+        if (timer > 3.3f)
         {
             Debug.Log("RESPAWN!");
             respawn();
 
-            timer = timer - 4.0f; // reset timer
+            timer = timer - 3.3f; // reset timer
         }
         
         if(controllsAllowed && !(respawnCooldown)){
@@ -343,7 +352,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                         GameObject nextCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
                         float distCurrentPlayer = Vector3.Distance(this.transform.position, nextCheckPoint.transform.position);
                         float distOtherPlayer = Vector3.Distance(player.transform.position, nextCheckPoint.transform.position);
-                        if(distOtherPlayer >= distCurrentPlayer){
+                        if(distOtherPlayer <= distCurrentPlayer){
                             numInFront++;
                         }
                     }
