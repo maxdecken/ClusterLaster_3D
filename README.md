@@ -45,6 +45,12 @@ Zu Beginn des Spiels erscheint das Start Menü.
 * Race On - Das Main-Game startet
 * Quit - Das Spiel wird beendet
 
+### Configuration Menü
+
+Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kombo er spielen will.
+
+![grafik](https://user-images.githubusercontent.com/68195151/216106081-e373e25e-856a-40fe-9e33-922bfd420de6.png)
+
 ### Main Game
 
 Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als erster ins Ziel kommen. 
@@ -54,7 +60,7 @@ Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als er
 
 Wenn der Player ins Ziel fährt, erscheint das Race-Complete-Menü. Hier wird der aktuell erreichte Platz, die Zeit, sowie der bisherige Highscore angezeigt.
 
-![complete](https://user-images.githubusercontent.com/94470276/215740441-535494d0-f786-4f8a-9bfd-b16d8e1dfa35.png)
+![grafik](https://user-images.githubusercontent.com/68195151/216105574-3bc0287f-254a-4ca5-a048-82aa8c1e2304.png)
 
 * Race Again - Das Main-Game startet erneut
 * Main Menu - Rückkehr zum Startmenü
