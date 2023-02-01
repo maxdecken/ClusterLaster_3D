@@ -7,9 +7,9 @@ SpiderPiggy3D ist ein 3D-Spiel für den Game-Engines Kurs des Studiengangs IMI a
 
 ## Getting Started
 
-WICHTIG: Das Spiel ist primär für Smartphones und sekundär für Windows (10 und 11) entwickelt und lässt sich ausschließlich auf diesen Plattformen spielen.
+WICHTIG: Das Spiel ist primär für Adroid-Smartphones und sekundär für Windows (10 und 11) entwickelt und lässt sich ausschließlich auf diesen Plattformen spielen.
 
-Um das Spiel zu starten muss entweder das letzte Release oder der Inhalt des Ornder <code>/builds/windows</code> heruntergeladen und die darinbefindliche <code>SpiderPiggy.exe</code> gestartet werden.
+Um das Spiel zu starten muss das letzte Release heruntergeladen und die darinbefindliche <code>spidercart.apk</code> auf das Android-Smartphone kopiert werden und dort installiert werden (Installation aus fremnden Quellen muss aktiv sein!). Unter Windows muss die <code>SpiderPiggy.exe</code> gestartet werden.
 
 Viel Spaß beim spielen!
 
