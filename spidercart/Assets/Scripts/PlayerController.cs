@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("References")]
     private float vehicleSize;
-    private int wheelsOnGround = 0;
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
@@ -221,10 +220,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         if(!controllsAllowed){
             if(gameStateController.IsRaceStarted()){
                 controllsAllowed = true;
-                StartCoroutine(SetPlaceCoroutine());
             }
         }
-        
+
+        SetPlayerPlace();
 
         if(raceFinished){
             if(place <= 1){
@@ -347,9 +346,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         return lastCheckPoint;
     }
 
-    public IEnumerator SetPlaceCoroutine()
+    public void SetPlayerPlace()
     {   
-        while(!raceFinished){
+        if(!raceFinished){
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             int numInFront = 0;
             //int currentPlayerCheckpointIndex = checkPointTriggerList.IndexOf(lastCheckPoint);
@@ -377,8 +376,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             }
             gameStateController.place = numInFront + punGameData.GetNumberPlayersFinished();
             gameStateController.SetPlaceText();
-            //Only check every 0.5 sec
-            yield return new WaitForSeconds(0.5f);
         }
     }
 }

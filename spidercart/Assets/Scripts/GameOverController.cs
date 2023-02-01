@@ -9,6 +9,7 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private GameObject defaultSpiderPiggy = null;
     [SerializeField] private GameObject evilSpiderPiggy = null;
     private GameObject currentSpiderPiggy = null;
+    [SerializeField] private TMP_Text titleText = null;
     [SerializeField] private TMP_Text currentTimeText = null;
     [SerializeField] private TMP_Text bestTimeText = null;
     [SerializeField] private TMP_Text placeText = null;
@@ -48,6 +49,8 @@ public class GameOverController : MonoBehaviour
     private void SetText(){
         //Set Place Text
         if(playerDataContainer.RaceFinished){
+            titleText.text = "RACE COMPLETE!";
+
             int place = playerDataContainer.PlayerPlace;
             if(place <= 1){
                 placeText.text = "YOU HAVE WON!!! Place: " + place.ToString();
@@ -80,7 +83,8 @@ public class GameOverController : MonoBehaviour
                 bestTimeText.text = "Best Time Ever: " + timeTextBest;
             }
         }else{
-            placeText.text = "YOU LEFT THE GAME";
+            titleText.text = "YOU LEFT THE GAME";
+            placeText.text = "";
             currentTimeText.text = "";
             bestTimeText.text = "";
             currentSpiderPiggy.GetComponent<Animator>().SetBool("isDefeatedStanding", true);

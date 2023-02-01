@@ -1546,6 +1546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpiderPiggy: {fileID: 1356791622}
   evilSpiderPiggy: {fileID: 418654763}
+  titleText: {fileID: 1757630211}
   currentTimeText: {fileID: 515970020}
   bestTimeText: {fileID: 711013495}
   placeText: {fileID: 469076819}
@@ -2110,7 +2111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -4.8, y: 18.8}
-  m_SizeDelta: {x: 274.95, y: 108.4}
+  m_SizeDelta: {x: 474.95, y: 108.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757630211
 MonoBehaviour:
