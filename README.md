@@ -55,6 +55,10 @@ Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kom
 
 Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als erster ins Ziel kommen. 
 
+![grafik](https://user-images.githubusercontent.com/68195151/216106620-c18c2660-0478-4868-ba66-b70d051ab6ca.png)
+![grafik](https://user-images.githubusercontent.com/68195151/216107125-b7ace2d7-010e-4f90-8eae-8c79415af6ae.png)
+![grafik](https://user-images.githubusercontent.com/68195151/216107277-419476ae-0e0a-4faf-be87-2147203b9989.png)
+![grafik](https://user-images.githubusercontent.com/68195151/216107646-76ff0927-0776-4baf-9f39-4c6bc74e609e.png)
 
 ### Race Complete Menü
 
