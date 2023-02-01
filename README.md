@@ -15,7 +15,9 @@ Viel Spaß beim spielen!
 
 ## Beschreibung
 
-Bei unserem Kart Racing Game geht es darum, als erster ins Ziel zu kommen und das so schell wie möglich. 
+Bei unserem Kart Racing Game geht es darum, als erster ins Ziel zu kommen und das so schnell wie möglich. 
+
+https://user-images.githubusercontent.com/68195151/216120740-8c8fed7b-61f9-4ff1-b4eb-d66bc74a87fb.mp4
 
 ### Genre & Art Style
 3D Racing Game, Fun-Racer
