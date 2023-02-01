@@ -93,6 +93,7 @@ public class GameStateController : MonoBehaviour
     }
 
     public void OnExitInPause(){
+        PhotonNetwork.LeaveRoom();
         PhotonNetwork.Disconnect();
         //Time.timeScale = 1;  
     }

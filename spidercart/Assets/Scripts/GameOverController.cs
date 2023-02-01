@@ -91,7 +91,7 @@ public class GameOverController : MonoBehaviour
         }
     }
 
-    void OnDestroy(){
-        Destroy(playerDataContainer.gameObject);
-    }
+    //void OnDestroy(){
+    //    Destroy(playerDataContainer.gameObject);
+    //}
 }
