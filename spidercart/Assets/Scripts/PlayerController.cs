@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("References")]
     private float vehicleSize;
-    private int wheelsOnGround = 0;
     [SerializeField] private Animator playerAnimations = null;
     [SerializeField] private GameStateController gameStateController = null;
     [SerializeField] PlayerController checkpointChecker;
@@ -48,6 +47,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private bool isSlipping = false;
     private float saveSteeringStrength;
     private float currentRotation;
+    private float anglePush;
+    private float maxVelocityOnSteep;
 
     //Binding if using On-Screencontrolls (Main Method)
     public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
@@ -111,6 +112,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             cm.GetComponent<CinemachineFreeLook>().Follow = this.transform;
             cm.GetComponent<CinemachineFreeLook>().LookAt = cameraLookAt.transform;
         }
+
+        maxVelocityOnSteep = maxVelocity;
     }
     
     private void FixedUpdate()
@@ -134,8 +137,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             isOnSide = false;
         }
 
-        bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 0.15f);
-        //Debug.Log("isOnGround: " + isOnGround);
+        bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 2.15f);
+        Debug.Log("isOnGround: " + isOnGround);
         
         if (isOnTop || isOnSide)
         {
@@ -164,16 +167,27 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 float turnAmmount = joystick.ReadValue<Vector2>().x;
                 float turningPower = turnAmmount * steeringStrength;
 
+                if (transform.rotation.x < -20)
+                {
+                    anglePush = 30f;
+                    maxVelocity = maxVelocityOnSteep * 1000.5f;
+                }
+                else
+                {
+                    anglePush = 1;
+                    maxVelocity = maxVelocityOnSteep;
+                }
+
                 Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
                 Vector3 fwd = turnAngle * transform.forward;
-                Vector3 movement = fwd * velocity * joystick.ReadValue<Vector2>().y;
+                Vector3 movement = fwd * velocity * anglePush * joystick.ReadValue<Vector2>().y;
 
                 // forward movement
                 bool wasOverMaxSpeed = currentSpeed >= maxVelocity;
 
                 // if over max speed, cannot accelerate faster.
                 if (wasOverMaxSpeed) 
-                    movement *= 0.0f;
+                    movement *= 1.0f;
 
                 Vector3 newVelocity = rigidbody.velocity + movement * Time.fixedDeltaTime;
                 newVelocity.y = rigidbody.velocity.y;
@@ -190,7 +204,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             
                 Vector3 localVel = transform.InverseTransformVector(rigidbody.velocity);
                 rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * steeringStrength * Time.fixedDeltaTime, transform.up) * rigidbody.velocity;
-
+                
                 //In one of 10000 Tests the piggy should hit the HonkingHorn randomly
                 int randomHonkingHorn = Random.Range(0, 10001);
                 if(randomHonkingHorn == 10000){
@@ -206,10 +220,10 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         if(!controllsAllowed){
             if(gameStateController.IsRaceStarted()){
                 controllsAllowed = true;
-                StartCoroutine(SetPlaceCoroutine());
             }
         }
-        
+
+        SetPlayerPlace();
 
         if(raceFinished){
             if(place <= 1){
@@ -332,9 +346,9 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         return lastCheckPoint;
     }
 
-    public IEnumerator SetPlaceCoroutine()
+    public void SetPlayerPlace()
     {   
-        while(!raceFinished){
+        if(!raceFinished){
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             int numInFront = 0;
             //int currentPlayerCheckpointIndex = checkPointTriggerList.IndexOf(lastCheckPoint);
@@ -362,8 +376,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             }
             gameStateController.place = numInFront + punGameData.GetNumberPlayersFinished();
             gameStateController.SetPlaceText();
-            //Only check every 0.5 sec
-            yield return new WaitForSeconds(0.5f);
         }
     }
 }

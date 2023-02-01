@@ -3667,7 +3667,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470700327}
-  - component: {fileID: 470700326}
   - component: {fileID: 470700325}
   - component: {fileID: 470700324}
   m_Layer: 0
@@ -3702,7 +3701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb48d77f7462ff743b5e7e3b5cd77fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thirdPersonCam: {fileID: 1751301984}
   play_canvas: {fileID: 192918871}
   pause_canvas: {fileID: 251636641}
   player: {fileID: 0}
@@ -3713,18 +3711,6 @@ MonoBehaviour:
   gameOverLoader: {fileID: 470700324}
   startPlayerTime: 0
   place: 0
---- !u!114 &470700326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470700323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95771c3d26df0f14687410ab795820f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &470700327
 Transform:
   m_ObjectHideFlags: 0

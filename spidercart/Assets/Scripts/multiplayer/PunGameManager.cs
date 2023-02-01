@@ -34,6 +34,8 @@ public class PunGameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         //PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
+        Debug.Log("Leaving Room...");
+        PhotonNetwork.Disconnect();
         SceneManager.LoadScene(3);
     }
 

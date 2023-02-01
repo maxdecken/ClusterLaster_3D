@@ -1164,8 +1164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2880f22b98e934fa3a8d52dd0d09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 20
-  maxVelocity: 50
+  velocity: 15
+  maxVelocity: 30
   dragStrength: 0.9
   steeringStrength: 5
   maxAngularVelocity: 4
