@@ -51,6 +51,12 @@ Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kom
 
 ![grafik](https://user-images.githubusercontent.com/68195151/216106081-e373e25e-856a-40fe-9e33-922bfd420de6.png)
 
+### Muliplayer-Lobby
+
+In der Muliplayer Lobby sammeln sich die spieler die zusammen Spielen wollen, bis zu vier Spieler können gleichzeitig spielen. Der erste Spieler im Raum ist der Admin und nur dieser kann das spiel starten.
+
+![grafik](https://user-images.githubusercontent.com/68195151/216109766-70e5b81c-c195-4a0e-9def-eba31cbdf05a.png)
+
 ### Main Game
 
 Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als erster ins Ziel kommen. 
@@ -88,8 +94,7 @@ Software
 
 ### Resources
 #### Assets
-* Das SpeiderPiggy ist mit Dall-E (https://openai.com/dall-e-2/) generiert worden und dann händisch in Einzelteile aufgeteilt und geriggt worden.
-* Die Möwe wurde ebenfalls mit Dall-E (https://openai.com/dall-e-2/) generiert und in Photoshop in mehrere Tiles umgesetzt.
+* Das ursprüngliche Design des SpiderPiggys ist mit Dall-E (https://openai.com/dall-e-2/) generiert worden. Die 3D-Version des SpiderPiggys ist von uns selbst per Hand anhand des ursprünlichen Design modelliert und texturiert worden.
 
 #### Music
 * Game Soundtrack: https://pixabay.com/de/music/optimistisch-electro-pop-124340/
@@ -99,4 +104,5 @@ Software
 
 
 #### Code
-* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überwarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2022, 19:55 Uhr
+* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überwarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
+* Die Steuerung wurde zum Teil von der Steuerung des Kartes im Unity-Karting-Game inspriert, aber stak angepasst und abgewandelt. (https://learn.unity.com/project/karting-template) Zugrif am 01.02.2023, 17:54 Uhr
