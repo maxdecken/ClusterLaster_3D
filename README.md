@@ -35,7 +35,7 @@ Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte 
 
 ### Multiplayer
 
-Das Spiel ist zudem ein Multiplayer-Game, dieser wurde über die PhotonEngine realisiert. Der Muliplayer ermöglicht es mit anderen zu spielen und das Spiel so interessanter zu machen. Es geht darum der Erste zu sein!
+Das Spiel ist zudem ein Multiplayer-Game, welches über die PhotonEngine realisiert wurde. Der Muliplayer ermöglicht es mit anderen zu spielen und das Spiel so interessanter zu machen. Es geht darum, der Erste zu sein! Kollisionen sind nicht nur möglich, sondern auch erwünscht!
 
 ## Das Spiel
 
