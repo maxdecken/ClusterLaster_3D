@@ -1,6 +1,6 @@
 # ClusterLaster: "SpiderPiggy 3D: Let´s Cart!" (3D-Game, Multiplayer)
 
-![logo2](https://user-images.githubusercontent.com/94470276/216423745-d61acd68-5a3c-4cac-b44e-5d4518809818.png)
+![logo4](https://user-images.githubusercontent.com/94470276/216424737-811d178b-745c-4932-a435-ecc7ceff6640.png)
 
 
 SpiderPiggy3D ist ein 3D-Spiel für den Game-Engines Kurs des Studiengangs IMI an der HTW-Berlin im Wintersemster 22/23.
@@ -51,7 +51,7 @@ Zu Beginn des Spiels erscheint das Start Menü.
 
 Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kombo er spielen will.
 
-![selection](https://user-images.githubusercontent.com/73942713/216420322-13b21b17-341c-4933-9406-9fa92c9674d6.PNG)
+![chooose](https://user-images.githubusercontent.com/94470276/216427094-f1fd91b2-4fa2-4acf-b21d-c50443e04add.png)
 
 ### Muliplayer-Lobby
 
@@ -111,3 +111,5 @@ Software
 #### Code
 * Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
 * Die Steuerung wurde zum Teil von der Steuerung des Kartes im Unity-Karting-Game inspriert, aber angepasst und abgewandelt. (https://learn.unity.com/project/karting-template) Zugrif am 01.02.2023, 17:54 Uhr
+* Formatting the Timer: https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html, Zugriff am 02.02.2023, 20:02 Uhr
+* Implementing the Pause (teilweise deprecated seit Muliplayer): https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/, Zugriff am 02.02.2023, 20:02 Uhr
