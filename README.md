@@ -35,7 +35,7 @@ Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte 
 
 ### Multiplayer
 
-Das Spiel ist zudem ein Multiplayer-Game, dieser wurde über die PhotonEngine realisiert. Der Muliplayer ermöglicht es mit anderen zu spielen und das Spiel so interessanter zu machen. Es geht darum der Erste zu sein!
+Das Spiel ist zudem ein Multiplayer-Game, welches über die PhotonEngine realisiert wurde. Der Muliplayer ermöglicht es mit anderen zu spielen und das Spiel so interessanter zu machen. Es geht darum, der Erste zu sein! Kollisionen sind nicht nur möglich, sondern auch erwünscht!
 
 ## Das Spiel
 
@@ -88,7 +88,7 @@ Handy:
 Auf dem Handy kann das Touchpad auf der linken Seite verwendet werden, um in die jeweilig gedrücke Richtung zu lenken / fahren. 
 
 Desktop:
-Auf der PC-Variante kann mit den W A S D Tasten gestreuert werden, die wie in der Smartphone-Variante die Richtung angeben, in die man sich bewegt.
+Auf der PC-Variante kann mit den W A S D Tasten gesteuert werden, die wie in der Smartphone-Variante die Richtung angeben, in die man sich bewegt.
 
 
 ### Team
