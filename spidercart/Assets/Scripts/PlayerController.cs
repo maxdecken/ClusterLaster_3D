@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         bool isOnGround = Physics.Raycast(transform.position, Vector3.up, 2.15f);
-        Debug.Log("isOnGround: " + isOnGround);
+        //Debug.Log("isOnGround: " + isOnGround);
         
         if (isOnTop || isOnSide)
         {
@@ -311,12 +311,12 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
             // We own this player: send the others our data
-            Debug.Log("Sending: Some Data");
+            //Debug.Log("Sending: Some Data");
             stream.SendNext(transform.position);
         }
         else {
             // Network player, receive data
-            Debug.Log("Received Data: " + stream.ReceiveNext());
+            //Debug.Log("Received Data: " + stream.ReceiveNext());
         }
     }
     

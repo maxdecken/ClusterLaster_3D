@@ -24,22 +24,29 @@ public class PunGameData : MonoBehaviourPunCallbacks, IPunObservable
         //testMsgObject.text = testMsg;
     }
 
-    public void PlayerFinishedRace(){
+    public void PlayerFinishedRace() {
         NumberPlayersFinished++;
+        PhotonView photonView = PhotonView.Get(this);
+        photonView.RPC("Rpc_PlayerFinishedRace", RpcTarget.All);
     }
 
-    public int GetNumberPlayersFinished(){
+    public int GetNumberPlayersFinished() {
         return NumberPlayersFinished;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
-            Debug.Log("IsWriting");
+            //Debug.Log("IsWriting " + NumberPlayersFinished);
             stream.SendNext(NumberPlayersFinished);
         }
         else {
-            Debug.Log("IsNOTWriting");
             NumberPlayersFinished = (int)stream.ReceiveNext();
+            //Debug.Log("IsNOTWriting " + NumberPlayersFinished);
         }
+    }
+
+    [PunRPC]
+    void Rpc_PlayerFinishedRace() {
+        NumberPlayersFinished++;
     }
 }
