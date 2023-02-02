@@ -47,8 +47,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     private bool isSlipping = false;
     private float saveSteeringStrength;
     private float currentRotation;
-    private float anglePush;
-    private float maxVelocityOnSteep;
+    private float steepPush;
 
     //Binding if using On-Screencontrolls (Main Method)
     public InputAction joystick = new InputAction("look", binding: "<Gamepad>/leftStick");
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
         punGameData = GameObject.FindObjectOfType<PunGameData>();
         checkpointContainer = GameObject.FindGameObjectWithTag("Container");
         Transform checkpoints = checkpointContainer.transform.Find("Checkpoints");
-        Debug.Log("Wie viele Kinder? " + checkpointContainer.transform.childCount);
 
         checkPointTriggerList = new List<GameObject>();
         
@@ -112,8 +110,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             cm.GetComponent<CinemachineFreeLook>().Follow = this.transform;
             cm.GetComponent<CinemachineFreeLook>().LookAt = cameraLookAt.transform;
         }
-
-        maxVelocityOnSteep = maxVelocity;
+        
     }
     
     private void FixedUpdate()
@@ -169,18 +166,16 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 
                 if (transform.rotation.x < -20)
                 {
-                    anglePush = 30f;
-                    maxVelocity = maxVelocityOnSteep * 1000.5f;
+                    steepPush = 1.3f;
                 }
                 else
                 {
-                    anglePush = 1;
-                    maxVelocity = maxVelocityOnSteep;
+                    steepPush = 1f;
                 }
 
                 Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
                 Vector3 fwd = turnAngle * transform.forward;
-                Vector3 movement = fwd * velocity * anglePush * joystick.ReadValue<Vector2>().y;
+                Vector3 movement = fwd * velocity * joystick.ReadValue<Vector2>().y;
 
                 // forward movement
                 bool wasOverMaxSpeed = currentSpeed >= maxVelocity;
@@ -189,7 +184,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
                 if (wasOverMaxSpeed) 
                     movement *= 1.0f;
 
-                Vector3 newVelocity = rigidbody.velocity + movement * Time.fixedDeltaTime;
+                Vector3 newVelocity = rigidbody.velocity + movement * steepPush * Time.fixedDeltaTime;
                 newVelocity.y = rigidbody.velocity.y;
                 
                 rigidbody.velocity = newVelocity;
@@ -217,7 +212,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Players finished: " + punGameData.GetNumberPlayersFinished());
         if(!controllsAllowed){
             if(gameStateController.IsRaceStarted()){
                 controllsAllowed = true;
@@ -324,26 +318,19 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (checkPointTriggerList.IndexOf(checkpointTrigger) == nextCheckPointTriggerIndex)
         {
-            Debug.Log("correct");
             setRespawnPosition();
             nextCheckPointTriggerIndex++;
-        }
-        else
-        {
-            Debug.Log("wrong");
         }
     }
 
     public void setRespawnPosition()
     {
         lastCheckPoint = checkPointTriggerList[nextCheckPointTriggerIndex];
-        Debug.Log("Last Ceckpoint: " + lastCheckPoint);
-        
+
     }
 
     public GameObject getLastCheckPoint()
     {
-        Debug.Log(lastCheckPoint);
         return lastCheckPoint;
     }
 
