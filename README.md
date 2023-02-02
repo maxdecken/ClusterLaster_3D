@@ -31,7 +31,7 @@ Es gibt 2 spielbare Charaktere: SpiderPiggy und Evil SpiderPiggy. Beide haben je
 
 ### Obstacles
 
-Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte ein Spieler über diese drüberfahren, rutscht er für einen Augenblick aus und mus sich wieder neu orientieren. Da dies Zeit kostet, sollten Kollisionen vermieden werden. Die Möwen-Hinterlassenschaften sind überwiegend in der zweiten Hälfte der Strecke verteilt, damit die erste Hälfte einen leichteren Einstieg ermöglicht.
+Als Hindernis für die Spieler ist Möwenkacke auf der Straße verteilt. Sollte ein Spieler über diese drüberfahren, rutscht er für einen Augenblick aus und mus sich wieder neu orientieren. Da dies Zeit kostet, sollten Kollisionen vermieden werden. Die Möwen-Hinterlassenschaften sind überwiegend in der zweiten Hälfte der Strecke verteilt, damit die erste Hälfte einen leichteren Einstieg ermöglicht. Das Spiel ist zudem ein Muliplayer-Game, dieser wurde über die PhotonEngine realisiert. Der Muliplayer ermöglicht es mit anderen zu spielen und das Spiel so interessanter zu machen. Es geht darum der Erste zu sein!
 
 ### Multiplayer
 
@@ -51,7 +51,7 @@ Zu Beginn des Spiels erscheint das Start Menü.
 
 Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kombo er spielen will.
 
-![grafik](https://user-images.githubusercontent.com/68195151/216106081-e373e25e-856a-40fe-9e33-922bfd420de6.png)
+![selection](https://user-images.githubusercontent.com/73942713/216420322-13b21b17-341c-4933-9406-9fa92c9674d6.PNG)
 
 ### Muliplayer-Lobby
 
@@ -63,7 +63,6 @@ In der Muliplayer Lobby sammeln sich die spieler die zusammen Spielen wollen, bi
 
 Das Herzstück des Spiels: so schnell wie möglich die Strecke fahren und als erster ins Ziel kommen. 
 
-![selection](https://user-images.githubusercontent.com/73942713/216420322-13b21b17-341c-4933-9406-9fa92c9674d6.PNG)
 ![grafik](https://user-images.githubusercontent.com/68195151/216106620-c18c2660-0478-4868-ba66-b70d051ab6ca.png)
 ![grafik](https://user-images.githubusercontent.com/68195151/216107125-b7ace2d7-010e-4f90-8eae-8c79415af6ae.png)
 ![grafik](https://user-images.githubusercontent.com/68195151/216107277-419476ae-0e0a-4faf-be87-2147203b9989.png)
@@ -106,6 +105,8 @@ Software
 #### Sounds
 * Countdown: https://elements.envato.com/de/race-countdown-7DDRG4V
 
+#### Multiplayer
+* Der Muliplayer wurde mit Hilfe der PhotonEngine erstellt: https://www.photonengine.com/realtime
 
 #### Code
 * Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
