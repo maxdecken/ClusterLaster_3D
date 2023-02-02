@@ -61,7 +61,7 @@ In der Muliplayer Lobby sammeln sich die spieler die zusammen Spielen wollen, bi
 
 ### Main Game
 
-Das Herzstück des Spiels: so schnell wie möglich die strecke fahren und als erster ins Ziel kommen. 
+Das Herzstück des Spiels: so schnell wie möglich die Strecke fahren und als erster ins Ziel kommen. 
 
 ![grafik](https://user-images.githubusercontent.com/68195151/216106620-c18c2660-0478-4868-ba66-b70d051ab6ca.png)
 ![grafik](https://user-images.githubusercontent.com/68195151/216107125-b7ace2d7-010e-4f90-8eae-8c79415af6ae.png)
@@ -79,13 +79,14 @@ Wenn der Player ins Ziel fährt, erscheint das Race-Complete-Menü. Hier wird de
 
 ### Player Control
 
-Der Player kann sich mit der Steuerung fortbewegen, von Plattform zu Plattform schwingen und Items einsammeln. Zudem kann er sich sprunghaft dem Seil entlang hochziehen. Einige dieser Aktionen werden durch Items beeinflusst und verbessert.
+Der Player kann sich mit seinem Kart fortbewegen um die Strecke zu absolvieren.
 
-Tasten:
-A & D: Nach links bzw. rechts bewegen / schwingen
-Q: Am Seil hochziehen
-Leertaste & W: Springen -> Mehrere Sprünge sind möglich, Sprung kann auch in der Luft verwendet werden. Nach drei Srpüngen setzt eine Cooldown-Zeit ein.
-Linker Mausklick: An der Wand in Richtung des Maus-Icons wird ein Haken platziert, um das Seil zu spannen. In freier Luft kann kein Haken gesetzt werden. Wenn bereits ein Seil gespannt ist, wird mit einem weiteren Mausklick das Seil entfernt. 
+Handy:
+Auf dem Handy kann das Touchpad auf der linken Seite verwendet werden, um in die jeweilig gedrücke Richtung zu lenken / fahren. 
+
+Desktop:
+Auf der PC-Variante kann mit den W A S D Tasten gestreuert werden, die wie in der Smartphone-Variante die Richtung angeben, in die man sich bewegt.
+
 
 ### Team
 Max Decken, Colin Garms, Alexander Ehrenhöfer, Leah Sommer
