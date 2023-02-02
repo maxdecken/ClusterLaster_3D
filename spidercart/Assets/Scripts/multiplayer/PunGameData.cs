@@ -34,10 +34,12 @@ public class PunGameData : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
-            // We own this player: send the others our data
+            Debug.Log("IsWriting");
+            stream.SendNext(NumberPlayersFinished);
         }
         else {
-            // Network player, receive data
+            Debug.Log("IsNOTWriting");
+            NumberPlayersFinished = (int)stream.ReceiveNext();
         }
     }
 }
