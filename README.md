@@ -111,3 +111,5 @@ Software
 #### Code
 * Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
 * Die Steuerung wurde zum Teil von der Steuerung des Kartes im Unity-Karting-Game inspriert, aber angepasst und abgewandelt. (https://learn.unity.com/project/karting-template) Zugrif am 01.02.2023, 17:54 Uhr
+* Formatting the Timer: https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html, Zugriff am 02.02.2023, 20:02 Uhr
+* Implementing the Pause (teilweise deprecated seit Muliplayer): https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/, Zugriff am 02.02.2023, 20:02 Uhr
