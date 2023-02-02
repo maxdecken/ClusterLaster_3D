@@ -135,6 +135,7 @@ public class GameStateController : MonoBehaviour
         player.raceFinished = true;
         PunGameData gameData = GameObject.FindObjectOfType<PunGameData>();
         gameData.PlayerFinishedRace();
+        place = gameData.GetNumberPlayersFinished();
         raceOver = true;
         timeText.text = "";
         double currentPlayerTime = Time.timeAsDouble;

@@ -218,7 +218,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
-        SetPlayerPlace();
+        // TODO Fix in the future (vision)
+        //SetPlayerPlace();
 
         if(raceFinished){
             if(place <= 1){
