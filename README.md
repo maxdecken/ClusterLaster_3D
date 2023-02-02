@@ -107,5 +107,5 @@ Software
 
 
 #### Code
-* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überwarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
+* Für die Mechanik der Checkpoints wurde sich an einem Tutorial orientiert, jedoch für den Multiplayer stark überarbeitet. (https://www.youtube.com/watch?v=IOYNg6v9sfc&t=522s&ab_channel=CodeMonkey)   Zugrif am 13.01.2023, 19:55 Uhr
 * Die Steuerung wurde zum Teil von der Steuerung des Kartes im Unity-Karting-Game inspriert, aber angepasst und abgewandelt. (https://learn.unity.com/project/karting-template) Zugrif am 01.02.2023, 17:54 Uhr
