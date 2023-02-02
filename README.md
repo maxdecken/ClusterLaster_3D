@@ -51,7 +51,7 @@ Zu Beginn des Spiels erscheint das Start Menü.
 
 Vor Beginn des Spiels kann der Nutzer hier auswählen mit welcher Piggy-Kart-Kombo er spielen will.
 
-![selection](https://user-images.githubusercontent.com/73942713/216420322-13b21b17-341c-4933-9406-9fa92c9674d6.PNG)
+![chooose](https://user-images.githubusercontent.com/94470276/216427094-f1fd91b2-4fa2-4acf-b21d-c50443e04add.png)
 
 ### Muliplayer-Lobby
 
