@@ -217,6 +217,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Players finished: " + punGameData.GetNumberPlayersFinished());
         if(!controllsAllowed){
             if(gameStateController.IsRaceStarted()){
                 controllsAllowed = true;
