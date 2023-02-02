@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/68195151/216120740-8c8fed7b-61f9-4ff1-
 ### Player 
 
 Der Player (Als Prefab implementiert) wird gesteuert mit den WASD Tasten oder mit dem Touchpad.
-Es gibt 2 Characters: SpiderPiggy und Evil SpiderPiggy. Beide haben jeweils ein eigenes Kart.
+Es gibt 2 spielbare Charaktere: SpiderPiggy und Evil SpiderPiggy. Beide haben jeweils ein eigenes Kart.
 
 ### Obstacles
 
